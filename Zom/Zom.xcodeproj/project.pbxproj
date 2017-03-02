@@ -68,6 +68,9 @@
 		92F60BF11D018121008834AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92F60BF31D018121008834AC /* Localizable.strings */; };
 		92F694431E04913800B0963C /* AddBuddy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F694451E04913800B0963C /* AddBuddy.storyboard */; };
 		92F6947B1E04913E00B0963C /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F6947D1E04913E00B0963C /* Tabs.storyboard */; };
+		BE8DEAD81E66DA2D002BB589 /* ZomLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8DEAD71E66DA2D002BB589 /* ZomLoginViewController.m */; };
+		BE8DEB141E66EC5A002BB589 /* ZomSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8DEB131E66EC5A002BB589 /* ZomSignUpViewController.m */; };
+		BE8DEB531E66EF9F002BB589 /* VROChatAPIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8DEB521E66EF9F002BB589 /* VROChatAPIHandler.m */; };
 		D978BC981BABE200009246CF /* ZomAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D978BC951BABE200009246CF /* ZomAppDelegate.m */; };
 		D978BC991BABE200009246CF /* ZomTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = D978BC971BABE200009246CF /* ZomTheme.m */; };
 		D978BC9D1BABE6DA009246CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D978BC9C1BABE6DA009246CF /* Images.xcassets */; };
@@ -730,6 +733,12 @@
 		92F694F51E0491C500B0963C /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Tabs.strings; sourceTree = "<group>"; };
 		92F694F71E0491C900B0963C /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Tabs.strings"; sourceTree = "<group>"; };
 		92F694F91E0491CB00B0963C /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Tabs.strings"; sourceTree = "<group>"; };
+		BE8DEAD61E66DA2D002BB589 /* ZomLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZomLoginViewController.h; sourceTree = "<group>"; };
+		BE8DEAD71E66DA2D002BB589 /* ZomLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZomLoginViewController.m; sourceTree = "<group>"; };
+		BE8DEB121E66EC5A002BB589 /* ZomSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZomSignUpViewController.h; sourceTree = "<group>"; };
+		BE8DEB131E66EC5A002BB589 /* ZomSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZomSignUpViewController.m; sourceTree = "<group>"; };
+		BE8DEB511E66EF9F002BB589 /* VROChatAPIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VROChatAPIHandler.h; sourceTree = "<group>"; };
+		BE8DEB521E66EF9F002BB589 /* VROChatAPIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VROChatAPIHandler.m; sourceTree = "<group>"; };
 		C1B5F63F8FC6924BC02033C7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D978BC941BABE200009246CF /* ZomAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZomAppDelegate.h; path = Classes/ZomAppDelegate.h; sourceTree = "<group>"; };
 		D978BC951BABE200009246CF /* ZomAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZomAppDelegate.m; path = Classes/ZomAppDelegate.m; sourceTree = "<group>"; };
@@ -945,6 +954,19 @@
 			name = Onboarding;
 			sourceTree = "<group>";
 		};
+		BE8DEB151E66EC65002BB589 /* Customization */ = {
+			isa = PBXGroup;
+			children = (
+				BE8DEB511E66EF9F002BB589 /* VROChatAPIHandler.h */,
+				BE8DEB521E66EF9F002BB589 /* VROChatAPIHandler.m */,
+				BE8DEAD61E66DA2D002BB589 /* ZomLoginViewController.h */,
+				BE8DEAD71E66DA2D002BB589 /* ZomLoginViewController.m */,
+				BE8DEB121E66EC5A002BB589 /* ZomSignUpViewController.h */,
+				BE8DEB131E66EC5A002BB589 /* ZomSignUpViewController.m */,
+			);
+			name = Customization;
+			sourceTree = "<group>";
+		};
 		D9315C981BB5DC190077D2EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1031,6 +1053,7 @@
 		D99DEB701BABD1F300875194 /* Zom */ = {
 			isa = PBXGroup;
 			children = (
+				BE8DEB151E66EC65002BB589 /* Customization */,
 				92DD3E341BFB188D000811C1 /* Zom.entitlements */,
 				D9315CA91BB5DC200077D2EE /* ChatSecure Upstream */,
 				D978BCA41BABE88C009246CF /* Resources */,
@@ -1757,6 +1780,7 @@
 				928C992F1C049D18009FF66A /* ZomPickLanguageViewController.swift in Sources */,
 				92CBA8BC1D119E14001CDD3D /* ZomStickerMessage.swift in Sources */,
 				D99DEB731BABD1F300875194 /* main.m in Sources */,
+				BE8DEAD81E66DA2D002BB589 /* ZomLoginViewController.m in Sources */,
 				929545841BF5DC4E00A26FC2 /* ZomPickStickerCell.swift in Sources */,
 				92AA05E51E3774EF0054BEAD /* ZomOnboardingNavigationController.swift in Sources */,
 				9295457E1BF5D9A300A26FC2 /* ZomPickStickerViewController.swift in Sources */,
@@ -1784,7 +1808,9 @@
 				92DB70181C124BAD009B5684 /* ZomNewBuddyViewController.swift in Sources */,
 				92424CE01D6F92F3001256E4 /* ZomUtil.swift in Sources */,
 				929545881BF5F1FF00A26FC2 /* ZomBaseLoginViewController.swift in Sources */,
+				BE8DEB531E66EF9F002BB589 /* VROChatAPIHandler.m in Sources */,
 				92D378111BF1ECDE00E014EF /* ZomWelcomeViewController.swift in Sources */,
+				BE8DEB141E66EC5A002BB589 /* ZomSignUpViewController.m in Sources */,
 				6329CE201E009E51001BC2C6 /* ZomFingerprintCell.swift in Sources */,
 				9208607F1D13DBE200CC31D0 /* ZomBuddy.swift in Sources */,
 				D978BC981BABE200009246CF /* ZomAppDelegate.m in Sources */,

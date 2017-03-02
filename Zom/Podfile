@@ -84,8 +84,8 @@ abstract_target 'ZomPods' do
   pod 'IOCipher/GCDWebServer', :path => '../ChatSecure/Submodules/IOCipher/IOCipher.podspec'
   # Waiting for Swift 2.3 changes
   pod 'ParkedTextField', :path => '../ChatSecure/Submodules/ParkedTextField/ParkedTextField.podspec'
-
-
+  #..Used For Customization Purpose
+  pod 'ACFloatingTextfield-Objc' , :git => 'https://github.com/ErAbhishekChandani/ACFloatingTextfield.git'
   target 'Zom'
   #target 'ChatSecureTests'
   #target 'ChatSecure'

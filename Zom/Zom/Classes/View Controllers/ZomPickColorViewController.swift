@@ -39,6 +39,7 @@ public class ZomPickColorViewController: UICollectionViewController {
         colors.append(UIColor(netHex: 0xcc99cc00))
         colors.append(UIColor(netHex: 0xcccc0000))
         colors.append(UIColor(netHex: 0xccffbb33))
+        colors.append(UIColor.blackColor())
     }
     
     // Mark - UICollectionViewDataSource

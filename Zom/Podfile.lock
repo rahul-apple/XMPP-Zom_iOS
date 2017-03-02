@@ -1,4 +1,5 @@
 PODS:
+  - ACFloatingTextfield-Objc (1.0.1)
   - AFNetworking (3.1.0):
     - AFNetworking/NSURLSession (= 3.1.0)
     - AFNetworking/Reachability (= 3.1.0)
@@ -231,6 +232,7 @@ PODS:
   - ZXingObjC/All (3.2.1)
 
 DEPENDENCIES:
+  - ACFloatingTextfield-Objc (from `https://github.com/ErAbhishekChandani/ACFloatingTextfield.git`)
   - AFNetworking (~> 3.1)
   - Appirater (~> 2.0)
   - ARChromeActivity (~> 1.0)
@@ -275,6 +277,8 @@ DEPENDENCIES:
   - ZXingObjC (~> 3.0)
 
 EXTERNAL SOURCES:
+  ACFloatingTextfield-Objc:
+    :git: https://github.com/ErAbhishekChandani/ACFloatingTextfield.git
   ChatSecure-Push-iOS:
     :path: ../ChatSecure/Submodules/ChatSecure-Push-iOS/ChatSecure-Push-iOS.podspec
   CPAProxy:
@@ -305,6 +309,9 @@ EXTERNAL SOURCES:
     :path: ../ChatSecure/Submodules/XMPPFramework/XMPPFramework.podspec
 
 CHECKOUT OPTIONS:
+  ACFloatingTextfield-Objc:
+    :commit: d4bb260271a9c63786c9f434bca72be963fc08cc
+    :git: https://github.com/ErAbhishekChandani/ACFloatingTextfield.git
   JSQMessagesViewController:
     :git: https://github.com/ChatSecure/JSQMessagesViewController
     :tag: 7.3.4-send_button
@@ -313,6 +320,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ChatSecure/libsqlfs.git
 
 SPEC CHECKSUMS:
+  ACFloatingTextfield-Objc: a73947227b31f3405b9b1c660783e177247b2c73
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Appirater: f1c9e53e8b612193e6256144f6a0fd2e31f4340d
   ARChromeActivity: 5dcf9b9f09323761f992aff3525cdd777f83609d
@@ -360,6 +368,6 @@ SPEC CHECKSUMS:
   YapTaskQueue: 4142a372ea5971deddafe7c797193b01348a66ef
   ZXingObjC: bbf7b8f0cf8933fdd33eb4f9f46e22308552869b
 
-PODFILE CHECKSUM: 20bd012da84eeefff3266b1e75e447fa281df5c4
+PODFILE CHECKSUM: d3e44e4e88b04d1607b65a0750b7a888822bae04
 
 COCOAPODS: 1.2.0
