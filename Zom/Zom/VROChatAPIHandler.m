@@ -85,4 +85,48 @@
         }];    
 }
 
+#pragma mark -Register User with MobileNumber
+
+-(void)registerUserMobile:(NSString *)mobileNumber fullName:(NSString *)fullName andCountryCode:(NSString *)mobile_country_code success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure{
+    [self.apiOperationQueue addOperationWithBlock:^{
+        if(![ZomCommon isNetworkAvailable])
+        {
+            failure(nil);
+        }else{
+            [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+            [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [_manager.requestSerializer clearAuthorizationHeader];
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]init];
+            if (mobileNumber) {
+                [dictionary setObject:mobileNumber forKey:@"mobile"];
+            }
+            if (mobile_country_code) {
+                [dictionary setObject:mobile_country_code forKey:@"mobile_country_code"];
+            }
+            if (fullName) {
+                [dictionary setObject:fullName forKey:@"full_name"];
+            }
+            [dictionary setObject:@"mobile" forKey:@"regType"];
+            [dictionary setObject:VRO_CLIENT_ID forKey:@"client_id"];
+            [dictionary setObject:VRO_CLIENT_SECRET forKey:@"client_secret"];
+            [_manager POST:[NSString stringWithFormat:@"%@users",REG_URL] parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if (responseObject) {
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        success(responseObject);
+                    }];
+                }else{
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        failure(nil);
+                    }];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                failure(error);
+            }];
+        }
+    }];
+}
+
 @end
