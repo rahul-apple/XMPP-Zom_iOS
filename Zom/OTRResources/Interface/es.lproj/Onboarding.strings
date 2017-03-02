@@ -5,14 +5,14 @@
 /* Class = "UIButton"; normalTitle = "Sign into an existing account"; ObjectID = "KMo-gZ-Dp1"; */
 "KMo-gZ-Dp1.normalTitle" = "Sign into an existing account";
 
-/* Class = "UIButton"; normalTitle = "WELCOME TO ZOM"; ObjectID = "REE-vf-IHA"; */
-"REE-vf-IHA.normalTitle" = "WELCOME TO ZOM";
+/* Class = "UIButton"; normalTitle = "WELCOME TO VROChat"; ObjectID = "REE-vf-IHA"; */
+"REE-vf-IHA.normalTitle" = "WELCOME TO VROChat";
 
 /* Class = "UIButton"; normalTitle = "Switch Language"; ObjectID = "RzG-Jv-y0g"; */
 "RzG-Jv-y0g.normalTitle" = "Switch Language";
 
-/* Class = "UILabel"; text = "Use ZOM to send and receive free text and voice messages anytime, anywhere"; ObjectID = "SLr-hm-vgk"; */
-"SLr-hm-vgk.text" = "Use ZOM to send and receive free text and voice messages anytime, anywhere";
+/* Class = "UILabel"; text = "Use VROChat to send and receive free text and voice messages anytime, anywhere"; ObjectID = "SLr-hm-vgk"; */
+"SLr-hm-vgk.text" = "Use VROChat to send and receive free text and voice messages anytime, anywhere";
 
 /* Class = "UIViewController"; title = "Enable Push"; ObjectID = "SVg-zE-e0I"; */
 "SVg-zE-e0I.title" = "Enable Push";
@@ -35,5 +35,5 @@
 /* Class = "UIButton"; normalTitle = "Create an Account"; ObjectID = "xHH-ao-iyd"; */
 "xHH-ao-iyd.normalTitle" = "Create an Account";
 
-/* Class = "UITextView"; text = "Zom can now automatically notify compatible offline contacts that you'd like to establish a secure conversation with. To protect your privacy, these notifications currently do not contain any content."; ObjectID = "z6D-2V-YZv"; */
-"z6D-2V-YZv.text" = "Zom can now automatically notify compatible offline contacts that you'd like to establish a secure conversation with. To protect your privacy, these notifications currently do not contain any content.";
+/* Class = "UITextView"; text = "VROChat can now automatically notify compatible offline contacts that you'd like to establish a secure conversation with. To protect your privacy, these notifications currently do not contain any content."; ObjectID = "z6D-2V-YZv"; */
+"z6D-2V-YZv.text" = "VROChat can now automatically notify compatible offline contacts that you'd like to establish a secure conversation with. To protect your privacy, these notifications currently do not contain any content.";

@@ -1,6 +1,6 @@
 
-/* Class = "UILabel"; text = "Tap the Zom invite link from your friend or scan their QR code now"; ObjectID = "1kj-Rl-D1L"; */
-"1kj-Rl-D1L.text" = "اضغط على رابط دعوة Zom الذي تلقيته من صديقك أو امسح كود QR الخاص به الآن";
+/* Class = "UILabel"; text = "Tap the VROChat invite link from your friend or scan their QR code now"; ObjectID = "1kj-Rl-D1L"; */
+"1kj-Rl-D1L.text" = "اضغط على رابط دعوة VROChat الذي تلقيته من صديقك أو امسح كود QR الخاص به الآن";
 
 /* Class = "UILabel"; text = "ADD FRIENDS"; ObjectID = "2P2-BW-dpR"; */
 "2P2-BW-dpR.text" = "ADD FRIENDS";

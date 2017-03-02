@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
-
+#import "ZomAppDelegate.h"
 @interface VROChatAPIHandler : NSObject
 
 @end

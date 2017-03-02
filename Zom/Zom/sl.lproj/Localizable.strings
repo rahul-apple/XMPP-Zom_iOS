@@ -2,7 +2,7 @@
 "Account" = "Account";
 
 /* username section */
-"Basic Setup" = "Create a Zom ID";
+"Basic Setup" = "Create a VROChat ID";
 
 /* server selection footer */
 "Choose from our list of trusted servers, or use your own." = "Choose from our list of trusted servers, or use your own.";
@@ -20,7 +20,7 @@
 "Log In" = "Log In";
 
 /* for choosing your XMPP vCard display name */
-"Nickname" = "Zom ID";
+"Nickname" = "VROChat ID";
 
 /* server selection section title */
 "Server" = "Server";
@@ -32,7 +32,7 @@
 "Sign Up" = "";
 
 /* basic setup selection footer */
-"Think of a unique nickname that you don't use anywhere else and doesn't contain personal information." = "Your Zom ID can be anything you want, and is how you will be known by others on Zom.";
+"Think of a unique nickname that you don't use anywhere else and doesn't contain personal information." = "Your VROChat ID can be anything you want, and is how you will be known by others on Zom.";
 
 /* password section */
 "Tor" = "Tor";

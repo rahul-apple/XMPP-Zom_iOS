@@ -10,6 +10,8 @@
 
 @interface ZomAppDelegate : OTRAppDelegate
 
+@property (nonatomic, strong) NSOperationQueue *apiOperationQueue;
+
 - (OTRAccount *)getDefaultAccount;
 - (void) setDefaultAccount:(OTRAccount *)account;
 
