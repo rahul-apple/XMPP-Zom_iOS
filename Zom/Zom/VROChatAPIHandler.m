@@ -8,10 +8,6 @@
 
 #import "VROChatAPIHandler.h"
 #import <AFNetworking/AFNetworking.h>
-
-#define REG_URL @"https://vrocloud.com/vro_v3/users/"
-#define BASE_URL @"https://vrocloud.com/production/v1/"
-
 @interface VROChatAPIHandler ()
 @property (nonatomic, strong) NSOperationQueue *apiOperationQueue;
 @property (nonatomic ,strong)AFHTTPSessionManager *manager;
@@ -45,5 +41,48 @@
     return self;
 }
 
+#pragma mark -Register User with Email
+
+-(void)registerUserEmail:(NSString *)emailId fullName:(NSString *)fullName andPassWord:(NSString *)password success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure{
+        [self.apiOperationQueue addOperationWithBlock:^{
+            if(![ZomCommon isNetworkAvailable])
+            {
+                failure(nil);
+            }else{
+                [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+                [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [_manager.requestSerializer clearAuthorizationHeader];
+                NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]init];
+                if (emailId) {
+                    [dictionary setObject:emailId forKey:@"email"];
+                }
+                if (fullName) {
+                    [dictionary setObject:fullName forKey:@"full_name"];
+                }
+                if (password) {
+                    [dictionary setObject:password forKey:@"password"];
+                }
+                [dictionary setObject:@"email" forKey:@"regType"];
+                [dictionary setObject:VRO_CLIENT_ID forKey:@"client_id"];
+                [dictionary setObject:VRO_CLIENT_SECRET forKey:@"client_secret"];
+                [_manager POST:[NSString stringWithFormat:@"%@users",REG_URL] parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
+                    
+                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    if (responseObject) {
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            success(responseObject);
+                        }];
+                    }else{
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            failure(nil);
+                        }];
+                    }
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    failure(error);
+                }];
+            }
+        }];    
+}
 
 @end
