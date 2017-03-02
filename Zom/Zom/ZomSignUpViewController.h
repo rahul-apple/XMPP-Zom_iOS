@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ZomSignUpViewController : UIViewController
+#import <ACFloatingTextfield_Objc/ACFloatingTextField.h>
+@interface ZomSignUpViewController : UIViewController<UITextFieldDelegate>
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txt_fullName;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txt_Email;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txt_Password;
+@property (strong, nonatomic) IBOutlet ACFloatingTextField *txt_confirmPassword;
+- (IBAction)createAccount:(id)sender;
 
 @end

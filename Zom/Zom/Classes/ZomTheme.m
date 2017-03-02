@@ -9,7 +9,7 @@
 #import "ZomTheme.h"
 #import "Zom-swift.h"
 
-#define DEFAULT_ZOM_COLOR @"#FFE7275A"
+#define DEFAULT_ZOM_COLOR @"#FF00B371"
 
 @implementation ZomTheme
 

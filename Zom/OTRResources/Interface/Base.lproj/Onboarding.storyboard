@@ -132,23 +132,92 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Test" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BIp-BX-JhS" customClass="ACFloatingTextField">
-                                <rect key="frame" x="28" y="76" width="320" height="50"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BIp-BX-JhS" customClass="ACFloatingTextField">
+                                <rect key="frame" x="27" y="76" width="320" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="YAz-vg-q0X"/>
+                                    <constraint firstAttribute="height" constant="50" id="PnC-yU-jYO"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vDf-GC-h3i" id="3iU-68-kVk"/>
+                                </connections>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zyM-Jc-bnc" customClass="ACFloatingTextField">
+                                <rect key="frame" x="27" y="138" width="320" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="v4m-hk-Ymm"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vDf-GC-h3i" id="p8u-sg-sqI"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swc-9b-gBt" customClass="ACFloatingTextField">
+                                <rect key="frame" x="27" y="193" width="320" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="LHX-DU-rp4"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vDf-GC-h3i" id="3nh-qh-p0A"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ene-EE-rQ8" customClass="ACFloatingTextField">
+                                <rect key="frame" x="27" y="253" width="320" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Hzi-xv-Dvq"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vDf-GC-h3i" id="hLn-UZ-aRm"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRX-Ko-jOO">
+                                <rect key="frame" x="27" y="352" width="320" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="mn3-Ds-o3d"/>
+                                </constraints>
+                                <state key="normal" title="Create Account">
+                                    <color key="titleColor" red="0.0" green="0.70196078429999997" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="createAccount:" destination="vDf-GC-h3i" eventType="touchUpInside" id="aSf-ls-M5O"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="BIp-BX-JhS" firstAttribute="top" secondItem="ziW-Xt-ndY" secondAttribute="bottom" constant="56" id="Eqv-NO-Dbc"/>
-                            <constraint firstItem="BIp-BX-JhS" firstAttribute="leading" secondItem="WfH-6G-ieT" secondAttribute="leadingMargin" constant="12" id="bBi-Re-gWd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BIp-BX-JhS" secondAttribute="trailing" constant="11" id="cWN-DV-fog"/>
+                            <constraint firstItem="Swc-9b-gBt" firstAttribute="top" secondItem="zyM-Jc-bnc" secondAttribute="bottom" constant="5" id="1IL-Wc-X2i"/>
+                            <constraint firstItem="Ene-EE-rQ8" firstAttribute="leading" secondItem="WfH-6G-ieT" secondAttribute="leadingMargin" constant="11" id="27Y-72-x7I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ene-EE-rQ8" secondAttribute="trailing" constant="12" id="DyB-cV-V7p"/>
+                            <constraint firstItem="zyM-Jc-bnc" firstAttribute="top" secondItem="BIp-BX-JhS" secondAttribute="bottom" constant="12" id="G3i-tV-B7Q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BIp-BX-JhS" secondAttribute="trailing" constant="12" id="LWa-4W-GFK"/>
+                            <constraint firstItem="BIp-BX-JhS" firstAttribute="leading" secondItem="WfH-6G-ieT" secondAttribute="leadingMargin" constant="11" id="MzC-h1-qbV"/>
+                            <constraint firstItem="DRX-Ko-jOO" firstAttribute="top" secondItem="Ene-EE-rQ8" secondAttribute="bottom" constant="49" id="RG6-r3-KIB"/>
+                            <constraint firstItem="BIp-BX-JhS" firstAttribute="top" secondItem="ziW-Xt-ndY" secondAttribute="bottom" constant="56" id="XBk-X2-bzh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Swc-9b-gBt" secondAttribute="trailing" constant="12" id="YRR-nj-MO5"/>
+                            <constraint firstAttribute="trailing" secondItem="DRX-Ko-jOO" secondAttribute="trailing" constant="28" id="afW-GT-8Uo"/>
+                            <constraint firstItem="DRX-Ko-jOO" firstAttribute="leading" secondItem="WfH-6G-ieT" secondAttribute="leading" constant="27" id="bsh-4D-FQl"/>
+                            <constraint firstItem="Swc-9b-gBt" firstAttribute="leading" secondItem="WfH-6G-ieT" secondAttribute="leadingMargin" constant="11" id="hmk-jK-M84"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zyM-Jc-bnc" secondAttribute="trailing" constant="12" id="p9J-KD-eYB"/>
+                            <constraint firstItem="Ene-EE-rQ8" firstAttribute="top" secondItem="Swc-9b-gBt" secondAttribute="bottom" constant="10" id="pHR-zX-jlg"/>
+                            <constraint firstItem="zyM-Jc-bnc" firstAttribute="leading" secondItem="WfH-6G-ieT" secondAttribute="leadingMargin" constant="11" id="vke-lh-zaS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txt_Email" destination="zyM-Jc-bnc" id="IpO-Mh-HOQ"/>
+                        <outlet property="txt_Password" destination="Swc-9b-gBt" id="gZr-Xn-UOL"/>
+                        <outlet property="txt_confirmPassword" destination="Ene-EE-rQ8" id="PcP-sg-kAQ"/>
+                        <outlet property="txt_fullName" destination="BIp-BX-JhS" id="jXy-ZX-uuF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cve-K6-KvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,9 +7,10 @@
 //
 
 #import "ZomSignUpViewController.h"
+#import "VROChatAPIHandler.h"
 
 @interface ZomSignUpViewController ()
-
+@property (nonatomic, strong) VROChatAPIHandler *apiHandler;
 @end
 
 @implementation ZomSignUpViewController
@@ -17,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.apiHandler = [[VROChatAPIHandler alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,4 +36,21 @@
 }
 */
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return true;
+}
+- (IBAction)createAccount:(id)sender {
+    if (self.txt_Email.text.length==0||self.txt_fullName.text.length==0||self.txt_Password.text.length==0||self.txt_confirmPassword.text.length==0) {
+        return;
+    }
+    if (![self.txt_Password.text isEqualToString:self.txt_confirmPassword.text]) {
+        return;
+    }
+    [self.apiHandler registerUserEmail:self.txt_Email.text fullName:self.txt_fullName.text andPassWord:self.txt_Password.text success:^(id responseObject) {
+        NSLog(@"Account Created %@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"Error Occured: %@",[error localizedDescription]);
+    }];
+}
 @end
