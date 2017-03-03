@@ -33,7 +33,7 @@
         }
         self.apiOperationQueue = delegate.apiOperationQueue;
         self.isRefreshingToken = false;
-        _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://vrocloud.com/develop/v1"]];
+        _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:BASE_URL]];
         _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
