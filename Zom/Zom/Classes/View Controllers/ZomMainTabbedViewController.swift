@@ -15,7 +15,7 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
     private var meViewController:ZomProfileViewController? = nil
     private var observerContext = 0
     private var observersRegistered:Bool = false
-    private var barButtonSettings:UIBarButtonItem?
+//    private var barButtonSettings:UIBarButtonItem?
     private var barButtonAddChat:UIBarButtonItem?
     
     convenience init() {
@@ -52,7 +52,7 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
         }
         
         // Create bar button items
-        self.barButtonSettings = UIBarButtonItem(image: UIImage(named: "14-gear"), style: .Plain, target: self, action: #selector(self.settingsButtonPressed(_:)))
+//        self.barButtonSettings = UIBarButtonItem(image: UIImage(named: "14-gear"), style: .Plain, target: self, action: #selector(self.settingsButtonPressed(_:)))
         self.barButtonAddChat = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(self.didPressAddButton(_:)))
         
         // Hide the tab item text, but don't null it (we use it to build the top title)
@@ -131,8 +131,9 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
     
     private func updateTitle() {
         if (selectedViewController != nil) {
-            let appName = NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String] as! String
-            self.navigationItem.title = appName + " | " + selectedViewController!.tabBarItem.title!
+//            let appName = NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String] as! String
+//            self.navigationItem.title = appName + " | " + selectedViewController!.tabBarItem.title!
+            self.navigationItem.title = selectedViewController!.tabBarItem.title!
             if (selectedViewController == meViewController) {
                 populateMeTabController()
             }
@@ -140,12 +141,12 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
     }
     
     private func updateRightButtons() {
-        if let add = barButtonAddChat, settings = barButtonSettings {
+        if let add = barButtonAddChat/*, settings = barButtonSettings*/ {
             if (selectedIndex == 0) {
-                navigationItem.rightBarButtonItems = [settings, add]
+                navigationItem.rightBarButtonItems = [/*settings,*/ add]
             }
             else {
-                navigationItem.rightBarButtonItems = [settings]
+                navigationItem.rightBarButtonItems = [/*settings*/]
             }
         }
     }

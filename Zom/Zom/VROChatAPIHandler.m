@@ -129,4 +129,38 @@
     }];
 }
 
+
+- (void)listCountryCodes:(void (^)(id responseObject))success
+failure:(void (^)(NSError *error))failure
+{
+    [self.apiOperationQueue addOperationWithBlock:^{
+        if(![ZomCommon isNetworkAvailable])
+        {
+            failure(nil);
+            return ;
+        }
+        
+        [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+        [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [_manager.requestSerializer clearAuthorizationHeader];
+
+        [_manager GET:[NSString stringWithFormat:@"%@mobile/country_codes",BASE_URL] parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (responseObject) {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    success(responseObject);
+                }];
+            }else{
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    failure(nil);
+                }];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error);
+        }];
+    }];
+}
+
+
 @end

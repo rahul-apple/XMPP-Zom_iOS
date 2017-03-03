@@ -7,9 +7,10 @@
 //
 
 #import "ZomSignUpViewController.h"
+#import "ZomCountryPickerViewController.h"
 #import "VROChatAPIHandler.h"
 
-@interface ZomSignUpViewController ()
+@interface ZomSignUpViewController ()<UITextFieldDelegate, ZomCountryCodeDelegate>
 @property (nonatomic, strong) VROChatAPIHandler *apiHandler;
 @end
 
@@ -36,6 +37,30 @@
 }
 */
 
+#pragma mark - ZomCountryCodeDelegate Delegate
+- (void)countryCodeSelectionCompleted:(NSDictionary *)dict
+{
+    NSString *string = dict[@"country_code"];
+    NSArray *words = [string componentsSeparatedByCharactersInSet :[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *nospacestring = [words componentsJoinedByString:@""];
+    
+    _textFieldCountryCode.text = nospacestring;
+    _txt_Email.text = dict[@"country_name"];
+}
+
+#pragma mark - UITextField Delegates
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField.tag == 111) {
+        [self.view endEditing:YES];
+        ZomCountryPickerViewController *countryPickerController = (ZomCountryPickerViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ZomCountryPickerViewController"];
+        countryPickerController.delegate = self;
+        [self.navigationController pushViewController:countryPickerController animated:YES];
+        return NO;
+    }
+    return YES;
+}
+
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return true;
@@ -52,5 +77,35 @@
     } failure:^(NSError *error) {
         NSLog(@"Error Occured: %@",[error localizedDescription]);
     }];
+}
+
+- (IBAction)buttonActionChangeType:(UIButton *)sender {
+    [self.view endEditing:YES];
+    sender.tag = sender.tag == 0 ? 1 : 0;
+    
+    _txt_Email.text = @"";
+    _textFieldCountryCode.text = @"";
+    _viewMobileNumber.hidden = sender.tag == 0;
+    _txt_confirmPassword.hidden = sender.tag == 1;
+    _txt_Password.hidden = sender.tag == 1;
+    
+    [self.view layoutIfNeeded];
+
+    _constraintTextFieldHeight.constant = sender.tag == 0 ? 50 : 0;
+    _constraintTextFieldBottom.constant = sender.tag == 0 ? 12 : 0;
+    [UIView animateWithDuration:0.4 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+    
+    if (sender.tag == 1) {
+        _txt_Email.tag = 111;
+        _txt_Email.placeholder = @"Country";
+        [sender setTitle:@"Register By Email" forState:UIControlStateNormal];
+    } else {
+        _txt_Email.tag = 0;
+        _txt_Email.placeholder = @"Email";
+        [sender setTitle:@"Register By Mobile" forState:UIControlStateNormal];
+    }
+
 }
 @end
