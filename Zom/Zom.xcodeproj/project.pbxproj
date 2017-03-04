@@ -17,6 +17,7 @@
 		6329CE571E009E5D001BC2C6 /* ZomFingerprintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6329CE561E009E5D001BC2C6 /* ZomFingerprintCell.xib */; };
 		633CDA1F1E034AFE001A3ACF /* ZomPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633CDA1E1E034AFE001A3ACF /* ZomPasswordCell.swift */; };
 		633CDA221E0350BF001A3ACF /* ZomPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 633CDA201E034B05001A3ACF /* ZomPasswordCell.xib */; };
+		8A210C421E6A942F00AD03DF /* UIViewController+ZomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A210C411E6A942E00AD03DF /* UIViewController+ZomViewController.m */; };
 		8A38D3741E69798000594139 /* ZomCountryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A38D3731E69798000594139 /* ZomCountryPickerViewController.m */; };
 		920656981D9C4C1E00EC7034 /* ChatSecureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9315CA41BB5DC190077D2EE /* ChatSecureCore.framework */; };
 		920656991D9C4C1E00EC7034 /* ChatSecureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D9315CA41BB5DC190077D2EE /* ChatSecureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -564,6 +565,8 @@
 		6329CE561E009E5D001BC2C6 /* ZomFingerprintCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZomFingerprintCell.xib; path = Classes/Views/ZomFingerprintCell.xib; sourceTree = "<group>"; };
 		633CDA1E1E034AFE001A3ACF /* ZomPasswordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZomPasswordCell.swift; path = Classes/Views/ZomPasswordCell.swift; sourceTree = "<group>"; };
 		633CDA201E034B05001A3ACF /* ZomPasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZomPasswordCell.xib; path = Classes/Views/ZomPasswordCell.xib; sourceTree = "<group>"; };
+		8A210C401E6A942E00AD03DF /* UIViewController+ZomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZomViewController.h"; sourceTree = "<group>"; };
+		8A210C411E6A942E00AD03DF /* UIViewController+ZomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZomViewController.m"; sourceTree = "<group>"; };
 		8A38D3721E69798000594139 /* ZomCountryPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZomCountryPickerViewController.h; sourceTree = "<group>"; };
 		8A38D3731E69798000594139 /* ZomCountryPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZomCountryPickerViewController.m; sourceTree = "<group>"; };
 		9208607E1D13DBE200CC31D0 /* ZomBuddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZomBuddy.swift; path = Classes/ZomBuddy.swift; sourceTree = "<group>"; };
@@ -967,6 +970,8 @@
 				3B61CBC31E68231C00BD8ABB /* ZomConstants.h */,
 				3B61CBC41E68235C00BD8ABB /* ZomCommon.h */,
 				3B61CBC51E68235C00BD8ABB /* ZomCommon.m */,
+				8A210C401E6A942E00AD03DF /* UIViewController+ZomViewController.h */,
+				8A210C411E6A942E00AD03DF /* UIViewController+ZomViewController.m */,
 				BE8DEB511E66EF9F002BB589 /* VROChatAPIHandler.h */,
 				BE8DEB521E66EF9F002BB589 /* VROChatAPIHandler.m */,
 				BE8DEAD61E66DA2D002BB589 /* ZomLoginViewController.h */,
@@ -1790,6 +1795,7 @@
 				92D6AE0F1CEDDF9E000090AB /* ZomShareController.swift in Sources */,
 				9278C3961BF36A59003AC533 /* ZomIntroViewController.swift in Sources */,
 				928C992F1C049D18009FF66A /* ZomPickLanguageViewController.swift in Sources */,
+				8A210C421E6A942F00AD03DF /* UIViewController+ZomViewController.m in Sources */,
 				92CBA8BC1D119E14001CDD3D /* ZomStickerMessage.swift in Sources */,
 				D99DEB731BABD1F300875194 /* main.m in Sources */,
 				BE8DEAD81E66DA2D002BB589 /* ZomLoginViewController.m in Sources */,

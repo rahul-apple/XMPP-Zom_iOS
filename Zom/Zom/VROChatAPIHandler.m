@@ -66,7 +66,7 @@
                 [dictionary setObject:@"email" forKey:@"regType"];
                 [dictionary setObject:VRO_CLIENT_ID forKey:@"client_id"];
                 [dictionary setObject:VRO_CLIENT_SECRET forKey:@"client_secret"];
-                [_manager POST:[NSString stringWithFormat:@"%@users",REG_URL] parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
+                [_manager POST:[NSString stringWithFormat:@"%@users",BASE_URL] parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
                     
                 } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     if (responseObject) {
@@ -88,7 +88,7 @@
 #pragma mark -Register User with MobileNumber
 
 -(void)registerUserMobile:(NSString *)mobileNumber fullName:(NSString *)fullName andCountryCode:(NSString *)mobile_country_code success:(void (^)(id responseObject))success
-                 failure:(void (^)(NSError *error))failure{
+                 failure:(void (^)(NSError *error))failure {
     [self.apiOperationQueue addOperationWithBlock:^{
         if(![ZomCommon isNetworkAvailable])
         {
@@ -110,7 +110,7 @@
             [dictionary setObject:@"mobile" forKey:@"regType"];
             [dictionary setObject:VRO_CLIENT_ID forKey:@"client_id"];
             [dictionary setObject:VRO_CLIENT_SECRET forKey:@"client_secret"];
-            [_manager POST:[NSString stringWithFormat:@"%@users",REG_URL] parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
+            [_manager POST:[NSString stringWithFormat:@"%@users",BASE_URL] parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 if (responseObject) {
@@ -130,8 +130,7 @@
 }
 
 
-- (void)listCountryCodes:(void (^)(id responseObject))success
-failure:(void (^)(NSError *error))failure
+- (void)listCountryCodes:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
     [self.apiOperationQueue addOperationWithBlock:^{
         if(![ZomCommon isNetworkAvailable])

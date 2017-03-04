@@ -8,6 +8,7 @@
 
 #import "ZomCommon.h"
 
+
 @implementation ZomCommon
 + (BOOL)isNetworkAvailable {
     Reachability *networkReachability =

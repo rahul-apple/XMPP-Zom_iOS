@@ -14,7 +14,6 @@
 @interface VROChatAPIHandler : NSObject
 
 -(void)registerUserEmail:(NSString *)emailId fullName:(NSString *)fullName andPassWord:(NSString *)password success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
--(void)registerUserMobile:(NSString *)mobileNumber fullName:(NSString *)fullName andCountryCode:(NSString *)mobile_country_code success:(void (^)(id responseObject))success;
-- (void)listCountryCodes:(void (^)(id responseObject))success
-                 failure:(void (^)(NSError *error))failure;
+-(void)registerUserMobile:(NSString *)mobileNumber fullName:(NSString *)fullName andCountryCode:(NSString *)mobile_country_code success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+- (void)listCountryCodes:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <ACFloatingTextfield_Objc/ACFloatingTextField.h>
+#import <TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h>
+
 @interface ZomSignUpViewController : UIViewController<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet ACFloatingTextField *txt_fullName;
 @property (strong, nonatomic) IBOutlet ACFloatingTextField *txt_Email;
@@ -24,8 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonRegisterByMobile;
 @property (weak, nonatomic) IBOutlet UIView *viewMobileNumber;
 
+@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *scrollView;
 
-- (IBAction)createAccount:(id)sender;
+- (IBAction)createAccount:(UIButton *)sender;
 - (IBAction)buttonActionChangeType:(UIButton *)sender;
 
 
