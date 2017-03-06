@@ -19,8 +19,9 @@
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *textFieldCountryCode;
 
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintTextFieldHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintTextFieldBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewMobileHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewMobileBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewHeight;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *buttonRegisterByMobile;

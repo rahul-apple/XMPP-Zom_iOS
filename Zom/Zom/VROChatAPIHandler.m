@@ -25,7 +25,6 @@
     self = [super init];
     if(self)
     {
-        
         ZomAppDelegate *delegate = (ZomAppDelegate *)[UIApplication sharedApplication].delegate;
         if (!delegate.apiOperationQueue) {
             delegate.apiOperationQueue = [[NSOperationQueue alloc]init];
@@ -66,7 +65,7 @@
                 [dictionary setObject:@"email" forKey:@"regType"];
                 [dictionary setObject:VRO_CLIENT_ID forKey:@"client_id"];
                 [dictionary setObject:VRO_CLIENT_SECRET forKey:@"client_secret"];
-                [_manager POST:[NSString stringWithFormat:@"%@users",BASE_URL] parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
+                [_manager POST:@"users" parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
                     
                 } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     if (responseObject) {
@@ -87,7 +86,7 @@
 
 #pragma mark -Register User with MobileNumber
 
--(void)registerUserMobile:(NSString *)mobileNumber fullName:(NSString *)fullName andCountryCode:(NSString *)mobile_country_code success:(void (^)(id responseObject))success
+-(void)registerUserMobile:(NSString *)mobileNumber fullName:(NSString *)fullName password:(NSString *)password andCountryCode:(NSString *)mobile_country_code success:(void (^)(id responseObject))success
                  failure:(void (^)(NSError *error))failure {
     [self.apiOperationQueue addOperationWithBlock:^{
         if(![ZomCommon isNetworkAvailable])
@@ -107,10 +106,48 @@
             if (fullName) {
                 [dictionary setObject:fullName forKey:@"full_name"];
             }
+            [dictionary setObject:password forKey:@"password"];
             [dictionary setObject:@"mobile" forKey:@"regType"];
             [dictionary setObject:VRO_CLIENT_ID forKey:@"client_id"];
             [dictionary setObject:VRO_CLIENT_SECRET forKey:@"client_secret"];
-            [_manager POST:[NSString stringWithFormat:@"%@users",BASE_URL] parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
+            [_manager POST:@"users" parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if (responseObject) {
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        success(responseObject);
+                    }];
+                }else{
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        failure(nil);
+                    }];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                failure(error);
+            }];
+        }
+    }];
+}
+
+#pragma mark - Login User with Email
+
+-(void)loginWithEmail:(NSString *)email password:(NSString *)password success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure {
+    [self.apiOperationQueue addOperationWithBlock:^{
+        if(![ZomCommon isNetworkAvailable])
+        {
+            failure(nil);
+        }else{
+            [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+            [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [_manager.requestSerializer clearAuthorizationHeader];
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]init];
+            [dictionary setObject:email forKey:@"email"];
+            [dictionary setObject:password forKey:@"password"];
+            [dictionary setObject:@"vro_oauth" forKey:@"grant_type"];
+            [dictionary setObject:@"email" forKey:@"regType"];
+            [dictionary setObject:VRO_CLIENT_ID forKey:@"client_id"];
+            [dictionary setObject:VRO_CLIENT_SECRET forKey:@"client_secret"];
+            [_manager POST:@"oauth/token" parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 if (responseObject) {
@@ -143,7 +180,7 @@
         [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [_manager.requestSerializer clearAuthorizationHeader];
 
-        [_manager GET:[NSString stringWithFormat:@"%@mobile/country_codes",BASE_URL] parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        [_manager GET:@"" parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if (responseObject) {

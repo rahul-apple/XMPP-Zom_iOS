@@ -17,6 +17,7 @@
 		6329CE571E009E5D001BC2C6 /* ZomFingerprintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6329CE561E009E5D001BC2C6 /* ZomFingerprintCell.xib */; };
 		633CDA1F1E034AFE001A3ACF /* ZomPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633CDA1E1E034AFE001A3ACF /* ZomPasswordCell.swift */; };
 		633CDA221E0350BF001A3ACF /* ZomPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 633CDA201E034B05001A3ACF /* ZomPasswordCell.xib */; };
+		8A12E8361E6D54B5005E21EF /* ZomUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A12E8351E6D54B5005E21EF /* ZomUser.m */; };
 		8A210C421E6A942F00AD03DF /* UIViewController+ZomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A210C411E6A942E00AD03DF /* UIViewController+ZomViewController.m */; };
 		8A38D3741E69798000594139 /* ZomCountryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A38D3731E69798000594139 /* ZomCountryPickerViewController.m */; };
 		920656981D9C4C1E00EC7034 /* ChatSecureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9315CA41BB5DC190077D2EE /* ChatSecureCore.framework */; };
@@ -565,6 +566,8 @@
 		6329CE561E009E5D001BC2C6 /* ZomFingerprintCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZomFingerprintCell.xib; path = Classes/Views/ZomFingerprintCell.xib; sourceTree = "<group>"; };
 		633CDA1E1E034AFE001A3ACF /* ZomPasswordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZomPasswordCell.swift; path = Classes/Views/ZomPasswordCell.swift; sourceTree = "<group>"; };
 		633CDA201E034B05001A3ACF /* ZomPasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZomPasswordCell.xib; path = Classes/Views/ZomPasswordCell.xib; sourceTree = "<group>"; };
+		8A12E8341E6D54B5005E21EF /* ZomUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZomUser.h; sourceTree = "<group>"; };
+		8A12E8351E6D54B5005E21EF /* ZomUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZomUser.m; sourceTree = "<group>"; };
 		8A210C401E6A942E00AD03DF /* UIViewController+ZomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZomViewController.h"; sourceTree = "<group>"; };
 		8A210C411E6A942E00AD03DF /* UIViewController+ZomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZomViewController.m"; sourceTree = "<group>"; };
 		8A38D3721E69798000594139 /* ZomCountryPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZomCountryPickerViewController.h; sourceTree = "<group>"; };
@@ -970,6 +973,8 @@
 				3B61CBC31E68231C00BD8ABB /* ZomConstants.h */,
 				3B61CBC41E68235C00BD8ABB /* ZomCommon.h */,
 				3B61CBC51E68235C00BD8ABB /* ZomCommon.m */,
+				8A12E8341E6D54B5005E21EF /* ZomUser.h */,
+				8A12E8351E6D54B5005E21EF /* ZomUser.m */,
 				8A210C401E6A942E00AD03DF /* UIViewController+ZomViewController.h */,
 				8A210C411E6A942E00AD03DF /* UIViewController+ZomViewController.m */,
 				BE8DEB511E66EF9F002BB589 /* VROChatAPIHandler.h */,
@@ -1833,6 +1838,7 @@
 				9208607F1D13DBE200CC31D0 /* ZomBuddy.swift in Sources */,
 				D978BC981BABE200009246CF /* ZomAppDelegate.m in Sources */,
 				921224691CF7124600A88DF6 /* ZomSettingsManager.swift in Sources */,
+				8A12E8361E6D54B5005E21EF /* ZomUser.m in Sources */,
 				9278C3991BF3F859003AC533 /* ZomMessagesViewController.swift in Sources */,
 				6320C93B1DFF740C0080F3BD /* ZomUserInfoProfileCell.swift in Sources */,
 				927A14BA1DDB63BF00EAEAB7 /* ZomPickColorViewController.swift in Sources */,

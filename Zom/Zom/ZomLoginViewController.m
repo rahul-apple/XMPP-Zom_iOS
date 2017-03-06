@@ -10,6 +10,7 @@
 #import "ZomCountryPickerViewController.h"
 #import "VROChatAPIHandler.h"
 #import "UIViewController+ZomViewController.h"
+#import "ZomUser.h"
 
 
 @interface ZomLoginViewController ()<UITextFieldDelegate, ZomCountryCodeDelegate>
@@ -20,7 +21,7 @@
 @implementation ZomLoginViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+//    [super viewDidLoad];
     self.apiHandler = [[VROChatAPIHandler alloc]init];
     
     // Do any additional setup after loading the view.
@@ -34,8 +35,12 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+}
+
 -(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+//    [super viewWillDisappear:animated];
     [self hideNotifications];
 }
 
@@ -53,6 +58,10 @@
     
     _textFieldCountryCode.text = nospacestring;
     _textFieldEmail.text = dict[@"country_name"];
+    [_textFieldCountryCode upadteTextField:_textFieldCountryCode.frame];
+    [_textFieldEmail upadteTextField:_textFieldEmail.frame];
+    [_textFieldEmail setTextFieldPlaceholderText:@"Country"] ;
+
 }
 
 #pragma mark - UITextField Delegates
@@ -90,11 +99,11 @@
     
     if (sender.tag == 1) {
         _textFieldEmail.tag = 111;
-        _textFieldEmail.placeholder = @"Country";
+        [_textFieldEmail setTextFieldPlaceholderText:@"Country"];
         [sender setTitle:@"Login By Email" forState:UIControlStateNormal];
     } else {
         _textFieldEmail.tag = 0;
-        _textFieldEmail.placeholder = @"Email";
+        [_textFieldEmail setTextFieldPlaceholderText:@"Email"];
         [sender setTitle:@"Login By Mobile" forState:UIControlStateNormal];
     }
     
@@ -111,17 +120,67 @@
 }
 
 - (IBAction)buttonActionLogin:(UIButton *)sender {
-    //    if (self.txt_Email.text.length==0||self.txt_fullName.text.length==0||self.txt_Password.text.length==0||self.txt_confirmPassword.text.length==0) {
-    //        return;
-    //    }
-    //    if (![self.txt_Password.text isEqualToString:self.txt_confirmPassword.text]) {
-    //        return;
-    //    }
-    //    [self.apiHandler registerUserEmail:self.txt_Email.text fullName:self.txt_fullName.text andPassWord:self.txt_Password.text success:^(id responseObject) {
-    //        NSLog(@"Account Created %@",responseObject);
-    //    } failure:^(NSError *error) {
-    //        NSLog(@"Error Occured: %@",[error localizedDescription]);
-    //    }];
+    if (sender.tag == 0) {
+        [self.view endEditing:NO];
+        if (self.textFieldEmail.text.length==0||self.textFieldPassword.text.length==0) {
+            [self showWarning:@"Please fill all fields"];
+            return;
+        }
+        self.view.userInteractionEnabled = NO;
+        [self.apiHandler loginWithEmail:_textFieldEmail.text password:_textFieldPassword.text success:^(id responseObject) {
+            if (![responseObject valueForKey:@"error"]) {
+                [[ZomUser sharedInstance] setUserDetails:responseObject];
+                OTRXMPPAccount *account = [OTRXMPPAccount new];
+                account.username = [ZomUser sharedInstance].xmppUsername;
+                account.password = [ZomUser sharedInstance].xmppPassword;
+                account.rememberPassword = YES;
+                account.autologin = YES;
+                
+//                [[OTRProtocolManager sharedInstance] loginAccount:account];
+//                [[ZomAppDelegate appDelegate] showConversationViewController];
+                OTRXMPPLoginHandler *loginHandler = [OTRXMPPLoginHandler new];
+                XLFormDescriptor *form = [OTRXLFormCreator formForAccountType:OTRAccountTypeJabber createAccount:YES];
+                [loginHandler performActionWithValidForm:form account:account progress:^(NSInteger progress, NSString *summaryString) {
+                    NSLog(@"Tor Progress %d: %@", (int)progress, summaryString);
+                    
+                    
+                } completion:^(OTRAccount *account, NSError *error) {
+                    
+                    if (error) {
+                        // Unset/remove password from keychain if account
+                        // is unsaved / doesn't already exist. This prevents the case
+                        // where there is a login attempt, but it fails and
+                        // the account is never saved. If the account is never
+                        // saved, it's impossible to delete the orphaned password
+                        __block BOOL accountExists = NO;
+                        [[OTRDatabaseManager sharedInstance].readOnlyDatabaseConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+                            accountExists = [transaction objectForKey:account.uniqueId inCollection:[[OTRAccount class] collection]] != nil;
+                        }];
+                        if (!accountExists) {
+                            [account removeKeychainPassword:nil];
+                        }
+                    } else {
+                        [[OTRDatabaseManager sharedInstance].readWriteDatabaseConnection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                            [account saveWithTransaction:transaction];
+                        }];
+                    }
+                }];
+
+            } else {
+                [self showError:@"Login Unsuccessful" withMessage:[responseObject valueForKey:@"error_message"]];
+            }
+            self.view.userInteractionEnabled = YES;
+        } failure:^(NSError *error) {
+            if (error) {
+                [self showError:@"Login Unsuccessful" withMessage:[error localizedDescription]];
+            } else {
+                [self showError:@"Login Unsuccessful" withMessage:@"Network error"];
+            }
+            self.view.userInteractionEnabled = YES;
+        }];
+    } else {
+        
+    }
 }
 
 

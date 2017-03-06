@@ -10,7 +10,9 @@
 #import <ACFloatingTextfield_Objc/ACFloatingTextField.h>
 #import <TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h>
 #import "Zom-Swift.h"
-@interface ZomLoginViewController : UIViewController
+
+
+@interface ZomLoginViewController : OTRBaseLoginViewController
 
 @property (nonatomic, assign) BOOL isFromSignupPage;
 

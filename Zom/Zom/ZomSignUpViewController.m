@@ -22,6 +22,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.apiHandler = [[VROChatAPIHandler alloc]init];
+    _constraintViewMobileHeight.constant = 0;
+    _constraintViewMobileBottom.constant = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,6 +47,9 @@
     
     _textFieldCountryCode.text = nospacestring;
     _txt_Email.text = dict[@"country_name"];
+    [_textFieldCountryCode upadteTextField:_textFieldCountryCode.frame];
+    [_txt_Email upadteTextField:_txt_Email.frame];
+    [_txt_Email setTextFieldPlaceholderText:@"Country"] ;
 }
 
 #pragma mark - UITextField Delegates
@@ -106,7 +111,7 @@
             });
         }];
     } else {
-        if (self.txt_Email.text.length==0||self.txt_fullName.text.length==0||self.textFieldCountryCode.text.length==0||self.textFieldMobileNumber.text.length==0) {
+        if (self.txt_Email.text.length==0||self.txt_fullName.text.length==0||self.textFieldCountryCode.text.length==0||self.textFieldMobileNumber.text.length==0||self.txt_Password.text.length==0||self.txt_confirmPassword.text.length==0) {
             [self showWarning:@"Please fill all fields"];
             return;
         }
@@ -114,7 +119,11 @@
             [self showWarning:@"Please enter valid mobile number"];
             return;
         }
-        [self.apiHandler registerUserMobile:_textFieldMobileNumber.text fullName:_txt_fullName.text andCountryCode:_textFieldCountryCode.text success:^(id responseObject) {
+        if (![self.txt_Password.text isEqualToString:self.txt_confirmPassword.text]) {
+            [self showWarning:@"Passwords must be same"];
+            return;
+        }
+        [self.apiHandler registerUserMobile:_textFieldMobileNumber.text fullName:_txt_fullName.text password:_txt_Password.text andCountryCode:_textFieldCountryCode.text success:^(id responseObject) {
             if (![responseObject valueForKey:@"error"]) {
                 ZomLoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"ZomLoginViewController"];
                 loginController.isFromSignupPage = YES;
@@ -161,24 +170,32 @@
     _txt_Email.text = @"";
     _textFieldCountryCode.text = @"";
     _viewMobileNumber.hidden = sender.tag == 0;
-    _txt_confirmPassword.hidden = sender.tag == 1;
-    _txt_Password.hidden = sender.tag == 1;
     
     [self.view layoutIfNeeded];
-
-    _constraintTextFieldHeight.constant = sender.tag == 0 ? 50 : 0;
-    _constraintTextFieldBottom.constant = sender.tag == 0 ? 12 : 0;
+    
+    _constraintViewMobileHeight.constant = sender.tag == 1 ? 50.0 : 0;
+    _constraintViewMobileBottom.constant = sender.tag == 1 ? 12.0 : 0;
+    
     [UIView animateWithDuration:0.4 animations:^{
         [self.view layoutIfNeeded];
+        CGFloat height = CGRectGetMaxY([self.navigationController navigationBar].frame) + CGRectGetMaxY(_buttonRegisterByMobile.frame) + 24.0;
+        if (height > self.view.frame.size.height) {
+            _constraintViewHeight.constant = height;
+        } else {
+            _constraintViewHeight.constant = self.view.frame.size.height;
+        }
+        [_textFieldCountryCode upadteTextField:_textFieldCountryCode.frame];
+        [_textFieldMobileNumber upadteTextField:_textFieldMobileNumber.frame];
+
     }];
     
     if (sender.tag == 1) {
         _txt_Email.tag = 111;
-        _txt_Email.placeholder = @"Country";
+        [_txt_Email setTextFieldPlaceholderText:@"Country"] ;
         [sender setTitle:@"Register By Email" forState:UIControlStateNormal];
     } else {
         _txt_Email.tag = 0;
-        _txt_Email.placeholder = @"Email";
+        [_txt_Email setTextFieldPlaceholderText:@"Email"];
         [sender setTitle:@"Register By Mobile" forState:UIControlStateNormal];
     }
 
