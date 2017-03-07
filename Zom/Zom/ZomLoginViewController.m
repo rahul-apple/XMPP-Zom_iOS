@@ -23,7 +23,8 @@
 - (void)viewDidLoad {
 //    [super viewDidLoad];
     self.apiHandler = [[VROChatAPIHandler alloc]init];
-    
+    _constraintViewMobileHeight.constant = 0;
+    _constraintViewMobileBottom.constant = 0;
     // Do any additional setup after loading the view.
 }
 
@@ -94,8 +95,18 @@
     _textFieldEmail.text = @"";
     _textFieldCountryCode.text = @"";
     _viewMobileNumber.hidden = sender.tag == 0;
-    _textFieldPassword.hidden = sender.tag == 1;
     
+    [self.view layoutIfNeeded];
+    
+    _constraintViewMobileHeight.constant = sender.tag == 1 ? 50.0 : 0;
+    _constraintViewMobileBottom.constant = sender.tag == 1 ? 12.0 : 0;
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        [self.view layoutIfNeeded];
+        [_textFieldCountryCode upadteTextField:_textFieldCountryCode.frame];
+        [_textFieldMobileNumber upadteTextField:_textFieldMobileNumber.frame];
+        
+    }];
     
     if (sender.tag == 1) {
         _textFieldEmail.tag = 111;
@@ -119,68 +130,120 @@
     }
 }
 
+-(void)loginSuccess:(id)responseObject {
+    if (![responseObject valueForKey:@"error"]) {
+        
+        [[ZomUser sharedInstance] setUserDetails:responseObject];
+        
+        
+        OTRXMPPAccount *account = [[OTRXMPPAccount alloc] init];
+        account.username = [NSString stringWithFormat:@"%@@ec2-54-169-209-47.ap-southeast-1.compute.amazonaws.com", [ZomUser sharedInstance].xmppUsername];
+        account.password = [ZomUser sharedInstance].xmppPassword;
+        account.rememberPassword = YES;
+        account.autologin = YES;
+        
+        
+        //                [[OTRProtocolManager sharedInstance] loginAccount:account];
+        //                [[ZomAppDelegate appDelegate] showConversationViewController];
+        OTRXMPPLoginHandler *loginHandler = [OTRXMPPLoginHandler new];
+        
+        XLFormDescriptor *form = [OTRXLFormCreator formForAccount:account];
+        [loginHandler performActionWithValidForm:nil account:account progress:^(NSInteger progress, NSString *summaryString) {
+            NSLog(@"Tor Progress %d: %@", (int)progress, summaryString);
+            
+            
+        } completion:^(OTRAccount *account, NSError *error) {
+            
+            if (error) {
+                // Unset/remove password from keychain if account
+                // is unsaved / doesn't already exist. This prevents the case
+                // where there is a login attempt, but it fails and
+                // the account is never saved. If the account is never
+                // saved, it's impossible to delete the orphaned password
+                __block BOOL accountExists = NO;
+                [[OTRDatabaseManager sharedInstance].readOnlyDatabaseConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
+                    accountExists = [transaction objectForKey:account.uniqueId inCollection:[[OTRAccount class] collection]] != nil;
+                }];
+                if (!accountExists) {
+                    [account removeKeychainPassword:nil];
+                }
+            } else {
+                [[OTRDatabaseManager sharedInstance].readWriteDatabaseConnection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
+                    [account saveWithTransaction:transaction];
+                }];
+            }
+            [self stopActivity];
+        }];
+        
+    } else {
+        [self showError:@"Login Unsuccessful" withMessage:[responseObject valueForKey:@"error_message"]];
+        [self stopActivity];
+    }
+}
+
 - (IBAction)buttonActionLogin:(UIButton *)sender {
-    if (sender.tag == 0) {
-        [self.view endEditing:NO];
+    [self.view endEditing:NO];
+    if (_buttonLoginByMobile.tag == 0) {
         if (self.textFieldEmail.text.length==0||self.textFieldPassword.text.length==0) {
             [self showWarning:@"Please fill all fields"];
             return;
         }
-        self.view.userInteractionEnabled = NO;
-        [self.apiHandler loginWithEmail:_textFieldEmail.text password:_textFieldPassword.text success:^(id responseObject) {
-            if (![responseObject valueForKey:@"error"]) {
-                [[ZomUser sharedInstance] setUserDetails:responseObject];
-                OTRXMPPAccount *account = [OTRXMPPAccount new];
-                account.username = [ZomUser sharedInstance].xmppUsername;
-                account.password = [ZomUser sharedInstance].xmppPassword;
-                account.rememberPassword = YES;
-                account.autologin = YES;
-                
-//                [[OTRProtocolManager sharedInstance] loginAccount:account];
-//                [[ZomAppDelegate appDelegate] showConversationViewController];
-                OTRXMPPLoginHandler *loginHandler = [OTRXMPPLoginHandler new];
-                XLFormDescriptor *form = [OTRXLFormCreator formForAccountType:OTRAccountTypeJabber createAccount:YES];
-                [loginHandler performActionWithValidForm:form account:account progress:^(NSInteger progress, NSString *summaryString) {
-                    NSLog(@"Tor Progress %d: %@", (int)progress, summaryString);
-                    
-                    
-                } completion:^(OTRAccount *account, NSError *error) {
-                    
-                    if (error) {
-                        // Unset/remove password from keychain if account
-                        // is unsaved / doesn't already exist. This prevents the case
-                        // where there is a login attempt, but it fails and
-                        // the account is never saved. If the account is never
-                        // saved, it's impossible to delete the orphaned password
-                        __block BOOL accountExists = NO;
-                        [[OTRDatabaseManager sharedInstance].readOnlyDatabaseConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
-                            accountExists = [transaction objectForKey:account.uniqueId inCollection:[[OTRAccount class] collection]] != nil;
-                        }];
-                        if (!accountExists) {
-                            [account removeKeychainPassword:nil];
-                        }
-                    } else {
-                        [[OTRDatabaseManager sharedInstance].readWriteDatabaseConnection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-                            [account saveWithTransaction:transaction];
-                        }];
-                    }
-                }];
+        if (![self isValidEmail:_textFieldEmail.text]) {
+            [self showWarning:@"Please enter valid email"];
+            return;
+        }
 
-            } else {
-                [self showError:@"Login Unsuccessful" withMessage:[responseObject valueForKey:@"error_message"]];
-            }
-            self.view.userInteractionEnabled = YES;
+        [self startActivity:YES];
+        [self.apiHandler loginWithEmail:_textFieldEmail.text password:_textFieldPassword.text success:^(id responseObject) {
+            [self loginSuccess:responseObject];
         } failure:^(NSError *error) {
             if (error) {
                 [self showError:@"Login Unsuccessful" withMessage:[error localizedDescription]];
             } else {
                 [self showError:@"Login Unsuccessful" withMessage:@"Network error"];
             }
-            self.view.userInteractionEnabled = YES;
+            [self stopActivity];
+
         }];
     } else {
-        
+        if (self.textFieldEmail.text.length==0||self.textFieldPassword.text.length==0||self.textFieldMobileNumber.text.length==0) {
+            [self showWarning:@"Please fill all fields"];
+            return;
+        }
+        if (![self isValidPhone:[NSString stringWithFormat:@"%@%@", _textFieldCountryCode.text, _textFieldMobileNumber.text]]) {
+            [self showWarning:@"Please enter valid mobile number"];
+            return;
+        }
+        [self startActivity:YES];
+        [self.apiHandler loginWithMobile:_textFieldMobileNumber.text password:_textFieldMobileNumber.text success:^(id responseObject) {
+            [self loginSuccess:responseObject];
+        } failure:^(NSError *error) {
+            if (error) {
+                [self showError:@"Login Unsuccessful" withMessage:[error localizedDescription]];
+            } else {
+                [self showError:@"Login Unsuccessful" withMessage:@"Network error"];
+            }
+            [self stopActivity];
+        }];
     }
+}
+
+- (BOOL)isValidEmail:(NSString*)checkString
+{
+    BOOL stricterFilter = YES;
+    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
+
+- (BOOL)isValidPhone:(NSString *)phoneNumber
+{
+    NSString *phoneRegex = @"^((\\+)|(00))[0-9]{6,14}$";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    
+    return [phoneTest evaluateWithObject:phoneNumber];
 }
 
 

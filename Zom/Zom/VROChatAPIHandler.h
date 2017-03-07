@@ -17,5 +17,6 @@
 -(void)registerUserMobile:(NSString *)mobileNumber fullName:(NSString *)fullName password:(NSString *)password andCountryCode:(NSString *)mobile_country_code success:(void (^)(id responseObject))success
                   failure:(void (^)(NSError *error))failure;
 -(void)loginWithEmail:(NSString *)email password:(NSString *)password success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+-(void)loginWithMobile:(NSString *)mobile password:(NSString *)password success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 - (void)listCountryCodes:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 @end

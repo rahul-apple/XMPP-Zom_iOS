@@ -20,6 +20,7 @@
 		8A12E8361E6D54B5005E21EF /* ZomUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A12E8351E6D54B5005E21EF /* ZomUser.m */; };
 		8A210C421E6A942F00AD03DF /* UIViewController+ZomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A210C411E6A942E00AD03DF /* UIViewController+ZomViewController.m */; };
 		8A38D3741E69798000594139 /* ZomCountryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A38D3731E69798000594139 /* ZomCountryPickerViewController.m */; };
+		8AEA4B991E6ED5C500535284 /* VROShowActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA4B981E6ED5C500535284 /* VROShowActivity.m */; };
 		920656981D9C4C1E00EC7034 /* ChatSecureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9315CA41BB5DC190077D2EE /* ChatSecureCore.framework */; };
 		920656991D9C4C1E00EC7034 /* ChatSecureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D9315CA41BB5DC190077D2EE /* ChatSecureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9206569D1D9C4D1E00EC7034 /* OTRAssets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9315CA61BB5DC190077D2EE /* OTRAssets.framework */; };
@@ -572,6 +573,8 @@
 		8A210C411E6A942E00AD03DF /* UIViewController+ZomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZomViewController.m"; sourceTree = "<group>"; };
 		8A38D3721E69798000594139 /* ZomCountryPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZomCountryPickerViewController.h; sourceTree = "<group>"; };
 		8A38D3731E69798000594139 /* ZomCountryPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZomCountryPickerViewController.m; sourceTree = "<group>"; };
+		8AEA4B971E6ED5C500535284 /* VROShowActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VROShowActivity.h; sourceTree = "<group>"; };
+		8AEA4B981E6ED5C500535284 /* VROShowActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VROShowActivity.m; sourceTree = "<group>"; };
 		9208607E1D13DBE200CC31D0 /* ZomBuddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZomBuddy.swift; path = Classes/ZomBuddy.swift; sourceTree = "<group>"; };
 		921224681CF7124600A88DF6 /* ZomSettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZomSettingsManager.swift; path = Classes/ZomSettingsManager.swift; sourceTree = "<group>"; };
 		921B4BCE1DD9C5EB0089D509 /* ZomMainTabbedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZomMainTabbedViewController.swift; path = "Classes/View Controllers/ZomMainTabbedViewController.swift"; sourceTree = "<group>"; };
@@ -977,6 +980,8 @@
 				8A12E8351E6D54B5005E21EF /* ZomUser.m */,
 				8A210C401E6A942E00AD03DF /* UIViewController+ZomViewController.h */,
 				8A210C411E6A942E00AD03DF /* UIViewController+ZomViewController.m */,
+				8AEA4B971E6ED5C500535284 /* VROShowActivity.h */,
+				8AEA4B981E6ED5C500535284 /* VROShowActivity.m */,
 				BE8DEB511E66EF9F002BB589 /* VROChatAPIHandler.h */,
 				BE8DEB521E66EF9F002BB589 /* VROChatAPIHandler.m */,
 				BE8DEAD61E66DA2D002BB589 /* ZomLoginViewController.h */,
@@ -1844,6 +1849,7 @@
 				927A14BA1DDB63BF00EAEAB7 /* ZomPickColorViewController.swift in Sources */,
 				926741E01BFC869F0044C059 /* ZomChooseAccountViewController.swift in Sources */,
 				8A38D3741E69798000594139 /* ZomCountryPickerViewController.m in Sources */,
+				8AEA4B991E6ED5C500535284 /* VROShowActivity.m in Sources */,
 				3B61CBC61E68235C00BD8ABB /* ZomCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

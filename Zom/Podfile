@@ -91,6 +91,8 @@ abstract_target 'ZomPods' do
   #Added by Leojin
   pod 'TPKeyboardAvoiding', :git => 'https://github.com/michaeltyson/TPKeyboardAvoiding.git'
   pod 'RMessage', :git => 'https://github.com/donileo/RMessage.git'
+  pod 'MONActivityIndicatorView', :git => 'https://github.com/mownier/MONActivityIndicatorView.git'
+
   #target 'ChatSecureTests'
   #target 'ChatSecure'
 end

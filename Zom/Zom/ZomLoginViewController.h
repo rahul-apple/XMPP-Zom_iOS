@@ -31,6 +31,9 @@
 @property (weak, nonatomic) IBOutlet UIView *viewLogin;
 @property (weak, nonatomic) IBOutlet UIView *viewOTP;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewMobileHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintViewMobileBottom;
+
 
 - (IBAction)buttonActionLogin:(UIButton *)sender;
 - (IBAction)buttonActionChangeType:(UIButton *)sender;

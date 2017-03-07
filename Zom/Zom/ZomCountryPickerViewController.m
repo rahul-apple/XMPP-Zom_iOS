@@ -7,6 +7,7 @@
 //
 
 #import "ZomCountryPickerViewController.h"
+#import "UIViewController+ZomViewController.h"
 #import <JSQMessagesViewController/UIImage+JSQMessages.h>
 #import "VROChatAPIHandler.h"
 
@@ -147,6 +148,7 @@
 }
 
 -(void)fetchCountryList {
+    [self startActivity:YES];
     [_apiHandler listCountryCodes:^(id responseObject) {
         if ([responseObject isKindOfClass:[NSArray class]])
         {
@@ -167,10 +169,14 @@
             }
             
             [yourArray writeToFile:yourArrayFileName atomically:YES];
+            [self stopActivity];
             [self loadCountryList];
         }
     } failure:^(NSError *error) {
-        [self loadCountryList];
+        [self stopActivity];
+        if (self.navigationController.topViewController == self) {
+            [self loadCountryList];
+        }
     }];
 }
 

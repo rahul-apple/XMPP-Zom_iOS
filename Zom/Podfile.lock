@@ -136,6 +136,7 @@ PODS:
     - Mantle/extobjc (= 2.1.0)
   - Mantle/extobjc (2.1.0)
   - MBProgressHUD (1.0.0)
+  - MONActivityIndicatorView (0.0.3)
   - MWFeedParser (1.0.1):
     - MWFeedParser/FeedParser (= 1.0.1)
     - MWFeedParser/NSDate+InternetDateTime (= 1.0.1)
@@ -260,6 +261,7 @@ DEPENDENCIES:
   - libsqlfs/SQLCipher (from `https://github.com/ChatSecure/libsqlfs.git`, branch `podspec-fix`)
   - Mantle (~> 2.0)
   - MBProgressHUD (~> 1.0)
+  - MONActivityIndicatorView (from `https://github.com/mownier/MONActivityIndicatorView.git`)
   - MWFeedParser (~> 1.0)
   - Navajo (~> 0.0)
   - OpenInChrome (~> 0.0)
@@ -303,6 +305,8 @@ EXTERNAL SOURCES:
   libsqlfs:
     :branch: podspec-fix
     :git: https://github.com/ChatSecure/libsqlfs.git
+  MONActivityIndicatorView:
+    :git: https://github.com/mownier/MONActivityIndicatorView.git
   OTRKit:
     :path: ../ChatSecure/Submodules/OTRKit/OTRKit.podspec
   ParkedTextField:
@@ -330,6 +334,9 @@ CHECKOUT OPTIONS:
   libsqlfs:
     :commit: 317d21a1e43e28396a62a462a8213a5f33678c2c
     :git: https://github.com/ChatSecure/libsqlfs.git
+  MONActivityIndicatorView:
+    :commit: 735114fe94207250b99f795044177032ada8107d
+    :git: https://github.com/mownier/MONActivityIndicatorView.git
   RMessage:
     :commit: 820a257da827ae1ab3fb851af0d5af409e382ec0
     :git: https://github.com/donileo/RMessage.git
@@ -364,6 +371,7 @@ SPEC CHECKSUMS:
   libsqlfs: 053504a0181dd89441857c02eea05c1f972abeed
   Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MONActivityIndicatorView: a00611695de16d956b17d03be25ee49a8effc5f2
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
   Navajo: 5fb68239b4e3af4610f31925bae1ca8e6bab8eaa
   OpenInChrome: f1f3f9dec682216fe78a0d7fe0b5b263d6312c32
@@ -390,6 +398,6 @@ SPEC CHECKSUMS:
   YapTaskQueue: 4142a372ea5971deddafe7c797193b01348a66ef
   ZXingObjC: bbf7b8f0cf8933fdd33eb4f9f46e22308552869b
 
-PODFILE CHECKSUM: b19ceccf24458c7c7bf502cd2f7e067a0e6012a2
+PODFILE CHECKSUM: 09938dbba58bf7dae513ef909937a4dcc81a6196
 
 COCOAPODS: 1.2.0

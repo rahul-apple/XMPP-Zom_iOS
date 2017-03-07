@@ -166,6 +166,40 @@
     }];
 }
 
+-(void)loginWithMobile:(NSString *)mobile password:(NSString *)password success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure {
+    [self.apiOperationQueue addOperationWithBlock:^{
+        if(![ZomCommon isNetworkAvailable])
+        {
+            failure(nil);
+        }else{
+            [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+            [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [_manager.requestSerializer clearAuthorizationHeader];
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]init];
+            [dictionary setObject:mobile forKey:@"mobile"];
+            [dictionary setObject:password forKey:@"password"];
+            [dictionary setObject:@"vro_oauth" forKey:@"grant_type"];
+            [dictionary setObject:@"mobile" forKey:@"regType"];
+            [dictionary setObject:VRO_CLIENT_ID forKey:@"client_id"];
+            [dictionary setObject:VRO_CLIENT_SECRET forKey:@"client_secret"];
+            [_manager POST:@"oauth/token" parameters:[dictionary mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if (responseObject) {
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        success(responseObject);
+                    }];
+                }else{
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        failure(nil);
+                    }];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                failure(error);
+            }];
+        }
+    }];
+}
 
 - (void)listCountryCodes:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
@@ -180,7 +214,7 @@
         [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [_manager.requestSerializer clearAuthorizationHeader];
 
-        [_manager GET:@"" parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        [_manager GET:@"mobile/country_codes" parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if (responseObject) {

@@ -8,8 +8,12 @@
 
 #import "UIViewController+ZomViewController.h"
 #import <RMessage/RMessage.h>
+#import "VROShowActivity.h"
+
 
 @implementation UIViewController (ZomViewController)
+
+
 
 -(void)showWarning:(NSString *)message {
     [RMessage showNotificationWithTitle:message type:RMessageTypeWarning customTypeName:nil callback:^{
@@ -31,6 +35,15 @@
 
 -(void)hideNotifications {
     [RMessage dismissActiveNotification];
+}
+
+
+- (void)startActivity:(BOOL)shouldDisableView {
+    [[VROShowActivity shared] startActivityInView:self.view andDisabled:shouldDisableView];
+}
+
+-(void)stopActivity {
+    [[VROShowActivity shared] stopActivity];
 }
 
 @end

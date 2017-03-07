@@ -13,4 +13,7 @@
 -(void)showSuccess:(NSString *)title withMessage:(NSString *)message;
 -(void)showError:(NSString *)title withMessage:(NSString *)message;
 -(void)hideNotifications;
+
+- (void)startActivity:(BOOL)shouldDisableView;
+-(void)stopActivity;
 @end
