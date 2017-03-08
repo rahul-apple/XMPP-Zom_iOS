@@ -11,6 +11,8 @@
 #import "VROChatAPIHandler.h"
 #import "UIViewController+ZomViewController.h"
 #import "ZomUser.h"
+#import "ZomOverrides.h"
+
 
 
 @interface ZomLoginViewController ()<UITextFieldDelegate, ZomCountryCodeDelegate>
@@ -134,52 +136,166 @@
     if (![responseObject valueForKey:@"error"]) {
         
         [[ZomUser sharedInstance] setUserDetails:responseObject];
+        if (!self.form)
+            self.form = [OTRXLFormCreator formForAccountType:OTRAccountTypeJabber createAccount:NO];
+
+        if (!self.account) {
+            self.account = [[OTRXMPPAccount alloc] init];
+
+        }
         
+        self.account.username = [NSString stringWithFormat:@"%@@%@", [ZomUser sharedInstance].xmppUsername, XMPPHostName];
+        self.account.password = [ZomUser sharedInstance].xmppPassword;
+        self.account.rememberPassword = YES;
+        self.account.autologin = YES;
         
-        OTRXMPPAccount *account = [[OTRXMPPAccount alloc] init];
-        account.username = [NSString stringWithFormat:@"%@@ec2-54-169-209-47.ap-southeast-1.compute.amazonaws.com", [ZomUser sharedInstance].xmppUsername];
-        account.password = [ZomUser sharedInstance].xmppPassword;
-        account.rememberPassword = YES;
-        account.autologin = YES;
-        
+        XLFormRowDescriptor *usernameRow = [self.form formRowWithTag:kOTRXLFormUsernameTextFieldTag];
+        XLFormRowDescriptor *passwordRow = [self.form formRowWithTag:kOTRXLFormPasswordTextFieldTag];
+        usernameRow.value = [NSString stringWithFormat:@"%@@%@", [ZomUser sharedInstance].xmppUsername, XMPPHostName];;
+        passwordRow.value = [ZomUser sharedInstance].xmppPassword;
         
         //                [[OTRProtocolManager sharedInstance] loginAccount:account];
         //                [[ZomAppDelegate appDelegate] showConversationViewController];
-        OTRXMPPLoginHandler *loginHandler = [OTRXMPPLoginHandler new];
+        if (!self.loginHandler) {
+            self.loginHandler = [OTRXMPPLoginHandler new];
+        }
         
-        XLFormDescriptor *form = [OTRXLFormCreator formForAccount:account];
-        [loginHandler performActionWithValidForm:nil account:account progress:^(NSInteger progress, NSString *summaryString) {
-            NSLog(@"Tor Progress %d: %@", (int)progress, summaryString);
-            
-            
-        } completion:^(OTRAccount *account, NSError *error) {
-            
-            if (error) {
-                // Unset/remove password from keychain if account
-                // is unsaved / doesn't already exist. This prevents the case
-                // where there is a login attempt, but it fails and
-                // the account is never saved. If the account is never
-                // saved, it's impossible to delete the orphaned password
-                __block BOOL accountExists = NO;
-                [[OTRDatabaseManager sharedInstance].readOnlyDatabaseConnection readWithBlock:^(YapDatabaseReadTransaction *transaction) {
-                    accountExists = [transaction objectForKey:account.uniqueId inCollection:[[OTRAccount class] collection]] != nil;
-                }];
-                if (!accountExists) {
-                    [account removeKeychainPassword:nil];
-                }
-            } else {
-                [[OTRDatabaseManager sharedInstance].readWriteDatabaseConnection readWriteWithBlock:^(YapDatabaseReadWriteTransaction *transaction) {
-                    [account saveWithTransaction:transaction];
-                }];
-            }
-            [self stopActivity];
-        }];
+        
+        [super loginButtonPressed:nil];
         
     } else {
         [self showError:@"Login Unsuccessful" withMessage:[responseObject valueForKey:@"error_message"]];
         [self stopActivity];
     }
 }
+
+-(void)pushInviteViewController {
+    [super pushInviteViewController];
+}
+
+
+//#pragma - mark Errors and Alert Views
+//
+//- (void)handleError:(NSError *)error
+//{
+//    //show xmpp erors, cert errors, tor errors, oauth errors.
+//    if (error.code == OTRXMPPSSLError) {
+//        NSData * certData = error.userInfo[OTRXMPPSSLCertificateDataKey];
+//        NSString * hostname = error.userInfo[OTRXMPPSSLHostnameKey];
+//        uint32_t trustResultType = [error.userInfo[OTRXMPPSSLTrustResultKey] unsignedIntValue];
+//        
+//        [self showCertWarningForCertificateData:certData withHostname:hostname trustResultType:trustResultType];
+//    }
+//    else {
+//        [self handleXMPPError:error];
+//    }
+//}
+//
+//- (void)handleXMPPError:(NSError *)error
+//{    
+//    [self showAlertViewWithTitle:ERROR_STRING() message:XMPP_FAIL_STRING() error:error];
+//}
+//
+//- (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message error:(NSError *)error
+//{
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        UIAlertAction * okButtonItem = [UIAlertAction actionWithTitle:OK_STRING() style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//            
+//        }];
+//        UIAlertController * alertController = nil;
+//        if (error) {
+//            UIAlertAction * infoButton = [UIAlertAction actionWithTitle:INFO_STRING() style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                NSString * errorDescriptionString = [NSString stringWithFormat:@"%@ : %@",[error domain],[error localizedDescription]];
+//                NSString *xmlErrorString = error.userInfo[OTRXMPPXMLErrorKey];
+//                if (xmlErrorString) {
+//                    errorDescriptionString = [errorDescriptionString stringByAppendingFormat:@"\n\n%@", xmlErrorString];
+//                }
+//                
+//                if ([[error domain] isEqualToString:@"kCFStreamErrorDomainSSL"]) {
+//                    NSString * sslString = [OTRXMPPError errorStringWithSSLStatus:(OSStatus)error.code];
+//                    if ([sslString length]) {
+//                        errorDescriptionString = [errorDescriptionString stringByAppendingFormat:@"\n%@",sslString];
+//                    }
+//                }
+//                
+//                
+//                UIAlertAction * copyButtonItem = [UIAlertAction actionWithTitle:COPY_STRING() style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                    NSString * copyString = [NSString stringWithFormat:@"Domain: %@\nCode: %ld\nUserInfo: %@",[error domain],(long)[error code],[error userInfo]];
+//                    
+//                    UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
+//                    [pasteBoard setString:copyString];
+//                }];
+//                
+//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:INFO_STRING() message:errorDescriptionString preferredStyle:UIAlertControllerStyleAlert];
+//                [alert addAction:okButtonItem];
+//                [alert addAction:copyButtonItem];
+//                [self presentViewController:alert animated:YES completion:nil];
+//            }];
+//            
+//            alertController = [UIAlertController alertControllerWithTitle:title
+//                                                                  message:message
+//                                                           preferredStyle:UIAlertControllerStyleAlert];
+//            [alertController addAction:okButtonItem];
+//            [alertController addAction:infoButton];
+//        }
+//        else {
+//            alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+//            [alertController addAction:okButtonItem];
+//        }
+//        
+//        if (alertController) {
+//            [self presentViewController:alertController animated:YES completion:nil];
+//        }
+//    });
+//}
+//
+//
+//- (void)showCertWarningForCertificateData:(NSData *)certData withHostname:(NSString *)hostname trustResultType:(SecTrustResultType)resultType {
+//    
+//    SecCertificateRef certificate = [OTRCertificatePinning certForData:certData];
+//    NSString * fingerprint = [OTRCertificatePinning sha256FingerprintForCertificate:certificate];
+//    NSString * message = [NSString stringWithFormat:@"%@\n\nSHA256\n%@",hostname,fingerprint];
+//    
+//    UIAlertController *certAlert = [UIAlertController alertControllerWithTitle:NEW_CERTIFICATE_STRING() message:nil preferredStyle:UIAlertControllerStyleAlert];
+//    
+//    if (![OTRCertificatePinning publicKeyWithCertData:certData]) {
+//        //no public key not able to save because won't be able evaluate later
+//        
+//        message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\nX %@",PUBLIC_KEY_ERROR_STRING()]];
+//        
+//        UIAlertAction *action = [UIAlertAction actionWithTitle:OK_STRING() style:UIAlertActionStyleCancel handler:nil];
+//        [certAlert addAction:action];
+//    }
+//    else {
+//        if (resultType == kSecTrustResultProceed || resultType == kSecTrustResultUnspecified) {
+//            //#52A352
+//            message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\n✓ %@",VALID_CERTIFICATE_STRING()]];
+//        }
+//        else {
+//            NSString * sslErrorMessage = [OTRXMPPError errorStringWithTrustResultType:resultType];
+//            message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\nX %@",sslErrorMessage]];
+//        }
+//        
+//        UIAlertAction *rejectAction = [UIAlertAction actionWithTitle:REJECT_STRING() style:UIAlertActionStyleDestructive handler:nil];
+//        [certAlert addAction:rejectAction];
+//        
+////        __weak __typeof__(self) weakSelf = self;
+//        UIAlertAction *saveAction = [UIAlertAction actionWithTitle:SAVE_STRING() style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+////            __typeof__(self) strongSelf = weakSelf;
+//            [OTRCertificatePinning addCertificate:[OTRCertificatePinning certForData:certData] withHostName:hostname];
+//            [[ZomAppDelegate appDelegate] showConversationViewController];
+//        }];
+//        [certAlert addAction:saveAction];
+//    }
+//    
+//    certAlert.message = message;
+//    
+//    [self presentViewController:certAlert animated:YES completion:nil];
+//}
+
+
+
+
 
 - (IBAction)buttonActionLogin:(UIButton *)sender {
     [self.view endEditing:NO];

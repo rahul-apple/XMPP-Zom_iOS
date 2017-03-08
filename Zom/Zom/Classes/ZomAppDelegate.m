@@ -13,6 +13,7 @@
 #import <ChatSecureCore/OTRAppDelegate.h>
 #import "OTRAssets+ZomLanguageHandling.h"
 #import "UITableView+Zom.h"
+#import "ZomConstants.h"
 
 @interface OTRAppDelegate (Zom)
 - (void)handleInvite:(NSString *)jidString fingerprint:(NSString *)fingerprint;
@@ -34,19 +35,19 @@
 
     // Auto-pin the home.zom.im cert
     //
-    NSArray *storedCerts = [OTRCertificatePinning storedCertificatesWithHostName:@"home.zom.im"];
-    if (storedCerts == nil || [storedCerts count] == 0) {
-        NSArray *servers = [OTRXMPPServerInfo defaultServerList];
-        for (OTRXMPPServerInfo *server in servers) {
-            if ([[server server] isEqualToString:@"home.zom.im"]) {
-                NSString *cert = [server certificate];
-                NSData *temp = [[NSData alloc] initWithBase64EncodedString:cert options:0];
-                SecCertificateRef ref = [OTRCertificatePinning certForData:temp];
-                [OTRCertificatePinning addCertificate:ref withHostName:@"home.zom.im"];
-                break;
-            }
-        }
-    }
+//    NSArray *storedCerts = [OTRCertificatePinning storedCertificatesWithHostName:XMPPHostName];
+//    if (storedCerts == nil || [storedCerts count] == 0) {
+//        NSArray *servers = [OTRXMPPServerInfo defaultServerList];
+//        for (OTRXMPPServerInfo *server in servers) {
+//            if ([[server server] isEqualToString:XMPPHostName]) {
+//                NSString *cert = [server certificate];
+//                NSData *temp = [[NSData alloc] initWithBase64EncodedString:cert options:0];
+//                SecCertificateRef ref = [OTRCertificatePinning certForData:temp];
+//                [OTRCertificatePinning addCertificate:ref withHostName:XMPPHostName];
+//                break;
+//            }
+//        }
+//    }
     
     BOOL ret = [super application:application didFinishLaunchingWithOptions:launchOptions];
     if (ret) {

@@ -12,6 +12,7 @@
 #define BASE_URL @"https://vrocloud.com/vro_v3/v1/"
 #define VRO_CLIENT_ID @"9ZPYVkEjaZBqM7oR"
 #define VRO_CLIENT_SECRET @"lvVFQFVoDv5R38uCUlfrRlfBAB7qmWzD"
+#define XMPPHostName @"ec2-54-169-209-47.ap-southeast-1.compute.amazonaws.com"
 
 
 #endif /* ZomConstants_h */

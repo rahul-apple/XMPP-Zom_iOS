@@ -11,7 +11,6 @@
 #import <TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h>
 #import "Zom-Swift.h"
 
-
 @interface ZomLoginViewController : OTRBaseLoginViewController
 
 @property (nonatomic, assign) BOOL isFromSignupPage;
