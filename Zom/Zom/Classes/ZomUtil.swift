@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 
 public class ZomUtil {
     public class func swizzle(clazz:AnyClass, originalSelector:Selector, swizzledSelector:Selector) -> Void {

@@ -4,7 +4,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 import JSQMessagesViewController
 
 public class ZomStickerMessage: NSObject, JSQMessageData {

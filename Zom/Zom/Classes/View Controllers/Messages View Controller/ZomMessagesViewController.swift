@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 import JSQMessagesViewController
 import OTRAssets
 import BButton

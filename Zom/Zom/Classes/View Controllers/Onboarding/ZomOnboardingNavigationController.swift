@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 
 public class ZomOnboardingNavigationController: UINavigationController {
     

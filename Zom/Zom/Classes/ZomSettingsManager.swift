@@ -6,8 +6,6 @@
 //
 //
 
-import ChatSecureCore
-
 public class ZomSettingsManager: OTRSettingsManager {
     override public var settingsGroups: [OTRSettingsGroup] {
         get {

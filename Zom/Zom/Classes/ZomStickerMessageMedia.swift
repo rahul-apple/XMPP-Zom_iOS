@@ -4,7 +4,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 
 public class ZomStickerMessageMedia: OTRMediaItem {
 

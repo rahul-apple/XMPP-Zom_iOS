@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import ChatSecureCore
 import KVOController
+
+
 
 public class ZomConversationViewController: OTRConversationViewController {
     

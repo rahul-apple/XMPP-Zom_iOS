@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 import BButton
 import QRCodeReaderViewController
 import AVFoundation

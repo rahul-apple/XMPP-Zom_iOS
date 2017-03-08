@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 
 extension OTRBuddy {
     public override class func initialize() {

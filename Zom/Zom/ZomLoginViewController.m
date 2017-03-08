@@ -15,6 +15,7 @@
 
 
 
+
 @interface ZomLoginViewController ()<UITextFieldDelegate, ZomCountryCodeDelegate>
 @property (nonatomic, strong) VROChatAPIHandler *apiHandler;
 
@@ -35,6 +36,7 @@
     if (_isFromSignupPage) {
         _viewOTP.hidden = NO;
         _viewLogin.hidden = YES;
+        
     }
 }
 
@@ -64,7 +66,6 @@
     [_textFieldCountryCode upadteTextField:_textFieldCountryCode.frame];
     [_textFieldEmail upadteTextField:_textFieldEmail.frame];
     [_textFieldEmail setTextFieldPlaceholderText:@"Country"] ;
-
 }
 
 #pragma mark - UITextField Delegates

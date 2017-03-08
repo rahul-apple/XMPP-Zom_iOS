@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 
 public protocol ZomPickStickerViewControllerDelegate {
     func didPickSticker(sticker:String, inPack: String)

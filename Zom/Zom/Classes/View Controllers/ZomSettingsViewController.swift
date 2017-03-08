@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 import ObjectiveC
 
 // Declare a global var to produce a unique address as the assoc object handle

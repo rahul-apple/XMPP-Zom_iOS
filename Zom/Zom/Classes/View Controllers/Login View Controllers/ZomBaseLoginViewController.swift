@@ -8,7 +8,6 @@
 
 
 import UIKit
-import ChatSecureCore
 import OTRAssets
 import BButton
 

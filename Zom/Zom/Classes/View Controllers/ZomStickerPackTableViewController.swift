@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 import Photos
 
 public class ZomStickerPackTableViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {

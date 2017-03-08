@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 
 extension UIColor {
     convenience init(a: UInt, red: UInt, green: UInt, blue: UInt) {

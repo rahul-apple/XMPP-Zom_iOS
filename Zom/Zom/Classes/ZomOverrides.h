@@ -6,7 +6,6 @@
 //
 //
 
-@import ChatSecureCore;
 
 extern NSString *const kOTRXLFormShowAdvancedTag;
 

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 
 public protocol ZomPickLanguageViewControllerDelegate {
     func dismissViewController(wasSaved:Bool) -> Void

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 import ZXingObjC
 
 public class ZomMyQRViewController: UIViewController, OTRAttachmentPickerDelegate {

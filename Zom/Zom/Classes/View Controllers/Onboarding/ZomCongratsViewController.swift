@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 import MobileCoreServices
 
 public class ZomCongratsViewController: UIViewController {

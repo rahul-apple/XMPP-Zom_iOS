@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChatSecureCore
 import YapDatabase.YapDatabaseView;
 import YapDatabase.YapDatabaseFullTextSearch;
 import YapDatabase.YapDatabaseFilteredView;
