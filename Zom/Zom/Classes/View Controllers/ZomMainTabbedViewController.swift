@@ -49,6 +49,7 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
                 }
             }
             setViewControllers(newControllers, animated: false)
+            selectedIndex = 1
         }
         
         // Create bar button items

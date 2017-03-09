@@ -26,9 +26,9 @@
 {
     self.userId = details[@"id"];
     self.email = details[@"email"];
-    self.xmppPassword = details[@"xmpp_password"];
-    self.xmppUsername = details[@"xmpp_username"];
     
+    self.xmppPassword = [details valueForKeyPath:@"user.xmpp_sip_password"];
+    self.xmppUsername = [details valueForKeyPath:@"user.xmpp_sip_user_name"];
     self.userName = [details valueForKeyPath:@"user.user_name"];
     self.fullName = [details valueForKeyPath:@"user.full_name"];
     self.mobileNumber = [details valueForKeyPath:@"user.mobile"];

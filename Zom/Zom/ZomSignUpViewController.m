@@ -24,6 +24,11 @@
     self.apiHandler = [[VROChatAPIHandler alloc]init];
     _constraintViewMobileHeight.constant = 0;
     _constraintViewMobileBottom.constant = 0;
+    
+    CGFloat height = CGRectGetMaxY([self.navigationController navigationBar].frame) + CGRectGetMaxY(_buttonRegisterByMobile.frame) + 24.0;
+    _constraintViewHeight.constant = height;
+    self.title = @"Sign Up";
+
 }
 
 - (void)didReceiveMemoryWarning {

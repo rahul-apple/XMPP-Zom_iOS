@@ -57,6 +57,9 @@
             [self.conversationViewController showOnboardingIfNeeded];
         }
     }
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"Calibri" size:20.0f] }];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"Calibri" size:18.0f] } forState:UIControlStateNormal];
     return ret;
 }
 

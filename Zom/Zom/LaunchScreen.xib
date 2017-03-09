@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,35 +15,29 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatsecure_logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="ew1-A3-gLz">
-                    <rect key="frame" x="87.5" y="75" width="200" height="249"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="249" id="Jjq-jl-LS5"/>
-                        <constraint firstAttribute="width" constant="200" id="Zw7-tc-AiA"/>
-                    </constraints>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="UL4-YD-bCQ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qde-b2-Cqs" userLabel="Choose Language Button">
-                    <rect key="frame" x="102" y="424" width="171" height="24"/>
-                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title="Choose Language" image="ic_language_white">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="BRJ-Aa-9Gi">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.70196078429999997" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="qde-b2-Cqs" secondAttribute="centerX" id="RiN-Oq-djy"/>
-                <constraint firstAttribute="centerX" secondItem="ew1-A3-gLz" secondAttribute="centerX" id="WwZ-PC-L3r"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qde-b2-Cqs" secondAttribute="bottom" constant="20" id="ZYI-tu-48h"/>
-                <constraint firstItem="qde-b2-Cqs" firstAttribute="top" secondItem="ew1-A3-gLz" secondAttribute="bottom" priority="900" constant="100" id="fdI-zn-WMa"/>
-                <constraint firstItem="qde-b2-Cqs" firstAttribute="centerX" secondItem="gvI-g8-3Sz" secondAttribute="centerX" id="k9B-u4-D8V"/>
-                <constraint firstItem="ew1-A3-gLz" firstAttribute="top" secondItem="gvI-g8-3Sz" secondAttribute="top" constant="75" id="qhJ-G0-hup"/>
+                <constraint firstItem="BRJ-Aa-9Gi" firstAttribute="top" secondItem="gvI-g8-3Sz" secondAttribute="top" id="2FN-S6-elh"/>
+                <constraint firstItem="UL4-YD-bCQ" firstAttribute="top" secondItem="gvI-g8-3Sz" secondAttribute="top" id="LeP-68-YlF"/>
+                <constraint firstAttribute="bottom" secondItem="UL4-YD-bCQ" secondAttribute="bottom" id="NuO-Rl-ODO"/>
+                <constraint firstItem="UL4-YD-bCQ" firstAttribute="leading" secondItem="gvI-g8-3Sz" secondAttribute="leading" id="QJd-ta-2Ia"/>
+                <constraint firstAttribute="trailing" secondItem="BRJ-Aa-9Gi" secondAttribute="trailing" id="VQK-EZ-WYG"/>
+                <constraint firstAttribute="bottom" secondItem="BRJ-Aa-9Gi" secondAttribute="bottom" id="e8o-HL-wII"/>
+                <constraint firstAttribute="trailing" secondItem="UL4-YD-bCQ" secondAttribute="trailing" id="eSe-31-jry"/>
+                <constraint firstItem="BRJ-Aa-9Gi" firstAttribute="leading" secondItem="gvI-g8-3Sz" secondAttribute="leading" id="qIj-ej-vrb"/>
             </constraints>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
     <resources>
-        <image name="chatsecure_logo_transparent" width="132" height="175"/>
-        <image name="ic_language_white" width="24" height="24"/>
+        <image name="LaunchImage" width="320" height="569"/>
+        <image name="LaunchImageIcon" width="320" height="569"/>
     </resources>
 </document>

@@ -29,6 +29,7 @@
     _constraintViewMobileHeight.constant = 0;
     _constraintViewMobileBottom.constant = 0;
     // Do any additional setup after loading the view.
+    self.title = @"Sign in";
 }
 
 -(void)loadView {
@@ -145,25 +146,23 @@
 
         }
         
-        self.account.username = [NSString stringWithFormat:@"%@@%@", [ZomUser sharedInstance].xmppUsername, XMPPHostName];
+        self.account.username = [NSString stringWithFormat:@"%@@%@", @"leojin103", XMPPHostName];
         self.account.password = [ZomUser sharedInstance].xmppPassword;
         self.account.rememberPassword = YES;
         self.account.autologin = YES;
         
         XLFormRowDescriptor *usernameRow = [self.form formRowWithTag:kOTRXLFormUsernameTextFieldTag];
         XLFormRowDescriptor *passwordRow = [self.form formRowWithTag:kOTRXLFormPasswordTextFieldTag];
-        usernameRow.value = [NSString stringWithFormat:@"%@@%@", [ZomUser sharedInstance].xmppUsername, XMPPHostName];;
-        passwordRow.value = [ZomUser sharedInstance].xmppPassword;
+        usernameRow.value = self.account.username;
+        passwordRow.value = self.account.password;
         
-        //                [[OTRProtocolManager sharedInstance] loginAccount:account];
-        //                [[ZomAppDelegate appDelegate] showConversationViewController];
         if (!self.loginHandler) {
             self.loginHandler = [OTRXMPPLoginHandler new];
         }
         
         
         [super loginButtonPressed:nil];
-        
+        [self stopActivity];
     } else {
         [self showError:@"Login Unsuccessful" withMessage:[responseObject valueForKey:@"error_message"]];
         [self stopActivity];

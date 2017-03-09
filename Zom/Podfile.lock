@@ -166,6 +166,7 @@ PODS:
   - SignalProtocol-ObjC (0.1.0):
     - SignalProtocolC (~> 0.1.0)
   - SignalProtocolC (0.1.0)
+  - SMSegmentView (1.1)
   - SQLCipher (3.4.1):
     - SQLCipher/standard (= 3.4.1)
   - SQLCipher/common (3.4.1)
@@ -275,6 +276,7 @@ DEPENDENCIES:
   - SAMKeychain (~> 1.5)
   - SignalProtocol-ObjC (from `../ChatSecure/Submodules/SignalProtocol-ObjC/SignalProtocol-ObjC.podspec`)
   - SignalProtocolC (from `https://raw.githubusercontent.com/ChatSecure/SignalProtocolC.podspec/b2b483fe1c4c66cecfc0376c496e6a58ed1939b5/SignalProtocolC.podspec`)
+  - SMSegmentView (~> 1.1)
   - TPKeyboardAvoiding (from `https://github.com/michaeltyson/TPKeyboardAvoiding.git`)
   - TTTAttributedLabel (~> 2.0)
   - TUSafariActivity (~> 1.0)
@@ -386,6 +388,7 @@ SPEC CHECKSUMS:
   SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
   SignalProtocol-ObjC: 06dbca97b2c0b1b434ea325abc50b4c26cf6e900
   SignalProtocolC: a059b4ff6899a2d99d7fafb046513fdd2db2b441
+  SMSegmentView: a99862f36ea73478558ae665c209cb80c0d4f059
   SQLCipher: 43d12c0eb9c57fb438749618fc3ce0065509a559
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
@@ -398,6 +401,6 @@ SPEC CHECKSUMS:
   YapTaskQueue: 4142a372ea5971deddafe7c797193b01348a66ef
   ZXingObjC: bbf7b8f0cf8933fdd33eb4f9f46e22308552869b
 
-PODFILE CHECKSUM: 09938dbba58bf7dae513ef909937a4dcc81a6196
+PODFILE CHECKSUM: 94650660024491a7d4206924e310261a5ba2bb73
 
 COCOAPODS: 1.2.0

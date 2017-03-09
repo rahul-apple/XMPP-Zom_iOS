@@ -92,6 +92,7 @@ abstract_target 'ZomPods' do
   pod 'TPKeyboardAvoiding', :git => 'https://github.com/michaeltyson/TPKeyboardAvoiding.git'
   pod 'RMessage', :git => 'https://github.com/donileo/RMessage.git'
   pod 'MONActivityIndicatorView', :git => 'https://github.com/mownier/MONActivityIndicatorView.git'
+  pod 'SMSegmentView', '~> 1.1'
 
   #target 'ChatSecureTests'
   #target 'ChatSecure'

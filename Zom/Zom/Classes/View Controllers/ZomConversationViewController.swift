@@ -35,12 +35,12 @@ public class ZomConversationViewController: OTRConversationViewController {
             let view:YapDatabaseViewTransaction = transaction.ext(OTRAllBuddiesDatabaseViewExtensionName) as! YapDatabaseViewTransaction
             let numBuddies = view.numberOfItemsInAllGroups()
             if (numBuddies == 0 && OTRAccountsManager.allAccountsAbleToAddBuddies().count > 0) {
-                self.tableView.tableHeaderView = self.getPitchInviteView()
+//                self.tableView.tableHeaderView = self.getPitchInviteView()
             //}
             //else if (numBuddies > 1){
             //    self.tableView.tableHeaderView = self.getPitchCreateGroupView()
             } else {
-                self.tableView.tableHeaderView = nil;
+//                self.tableView.tableHeaderView = nil;
             }
             }
         }
@@ -84,6 +84,8 @@ public class ZomConversationViewController: OTRConversationViewController {
         }
     }
 }
+
+
 
 public class ZomConversationViewControllerKVOObject : NSObject {
     var viewController:ZomConversationViewController? = nil
