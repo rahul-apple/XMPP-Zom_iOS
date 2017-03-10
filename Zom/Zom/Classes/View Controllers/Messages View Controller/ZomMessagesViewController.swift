@@ -70,13 +70,6 @@ extension OTRMessagesViewController {
         return string;
     }
     
-    public override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath)
-        if cell is JSQMessagesCollectionViewCell {
-//            (cell as! JSQMessagesCollectionViewCell).messageBubbleImageView.image = UIImage(named: "ChatWhite")
-        }
-        return cell
-    }
     
     func textAttachment(fontSize: CGFloat) -> NSTextAttachment {
         var font:UIFont? = UIFont(name: kFontAwesomeFont, size: fontSize)
@@ -108,10 +101,44 @@ public class ZomMessagesViewController: OTRMessagesHoldTalkViewController, UIGes
     private var attachmentPickerView:AttachmentPicker? = nil
     private var attachmentPickerTapRecognizer:UITapGestureRecognizer? = nil
     
+    var outgoingImage: JSQMessagesBubbleImage? = nil
+    var incomingImage: JSQMessagesBubbleImage? = nil
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.cameraButton?.setTitle(NSString.fa_stringForFontAwesomeIcon(FAIcon.FAPlusSquareO), forState: UIControlState.Normal)
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        let greenColor = ZomTheme.colorWithHexString(DEFAULT_ZOM_COLOR)
+        outgoingImage = bubbleImageFactory.outgoingMessagesBubbleImageWithColor(greenColor)
+        incomingImage = bubbleImageFactory.incomingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
+        self.collectionView.collectionViewLayout.messageBubbleFont = UIFont.init(name: "Calibri", size: self.collectionView.collectionViewLayout.messageBubbleFont.pointSize + 2)
+        
+        self.collectionView.loadEarlierMessagesHeaderTextColor = greenColor
+        self.collectionView.typingIndicatorEllipsisColor = UIColor.whiteColor()
+        self.collectionView.typingIndicatorMessageBubbleColor = greenColor
+        self.inputToolbar.contentView.textView.layer.cornerRadius = self.inputToolbar.contentView.textView.frame.height/2
+        if let font = self.inputToolbar.contentView.textView.font {
+            self.inputToolbar.contentView.textView.font = UIFont.init(name: "Calibri", size: font.pointSize)
+        }
+        if let font = self.sendButton?.titleLabel?.font {
+            self.sendButton?.titleLabel?.font = UIFont.init(name: "Calibri", size: font.pointSize)
+        }
+        
     }
+    
+    public override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
+        let message = self.messageAtIndexPath(indexPath)
+        return message?.messageIncoming() == true ? incomingImage : outgoingImage
+    }
+
+    public override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        let message = self.messageAtIndexPath(indexPath)
+        let timestampFormatter = JSQMessagesTimestampFormatter.sharedFormatter()
+        timestampFormatter.dateTextAttributes[NSFontAttributeName] = UIFont.init(name: "Calibri", size: 12)!
+        timestampFormatter.timeTextAttributes[NSFontAttributeName] = UIFont.init(name: "Calibri", size: 12)!
+        return timestampFormatter.attributedTimestampForDate(message?.date())
+    }
+    
     
     public func attachmentPicker(attachmentPicker: OTRAttachmentPicker!, addAdditionalOptions alertController: UIAlertController!) {
         
