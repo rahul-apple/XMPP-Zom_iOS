@@ -7,6 +7,7 @@
 //
 
 #import "ZomTheme.h"
+#import "ZomConstants.h"
 #import "Zom-swift.h"
 
 
@@ -35,9 +36,11 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:self.mainThemeColor];
     [[UINavigationBar appearance] setBackgroundColor:self.mainThemeColor];
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+//    [[UITabBar appearance] setTintColor:self.mainThemeColor];
 //    [[UITabBar appearance] setBarTintColor:self.mainThemeColor];
 //    [[UITabBar appearance] setBackgroundColor:self.mainThemeColor];
+    [[UITabBarItem appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor darkGrayColor], NSFontAttributeName : CALIBRIFONT(12.0)} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: self.mainThemeColor, NSFontAttributeName : CALIBRIFONT(12.0)} forState:UIControlStateSelected];
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSForegroundColorAttributeName: [UIColor whiteColor]
                                                            }];

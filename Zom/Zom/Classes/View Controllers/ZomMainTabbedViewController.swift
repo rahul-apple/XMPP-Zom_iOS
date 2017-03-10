@@ -31,14 +31,14 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
                     chatsViewController = (appDelegate.conversationViewController as! ZomConversationViewController)
                     chatsViewController!.tabBarItem = child.tabBarItem
                     newControllers.append(chatsViewController!)
-                } else if (child.restorationIdentifier == "friends") {
+                } /* else if (child.restorationIdentifier == "friends") {
                     friendsViewController = ZomComposeViewController()
                     if (friendsViewController!.view != nil) {
                         friendsViewController!.tabBarItem = child.tabBarItem
                     }
                     friendsViewController?.delegate = self
                     newControllers.append(friendsViewController!)
-                } else if (child.restorationIdentifier == "me") {
+                } */ else if (child.restorationIdentifier == "more") {
                     meViewController = ZomProfileViewController(nibName: nil, bundle: nil)
                     meViewController?.tabBarItem = child.tabBarItem
                     //meViewController = child as? ZomProfileViewController
@@ -59,9 +59,6 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
         for item:UITabBarItem in self.tabBar.items! {
             item.selectedImage = item.selectedImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
             item.image = item.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-            item.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.clearColor(),
-                NSFontAttributeName:UIFont.systemFontOfSize(1)], forState: UIControlState.Normal)
-            item.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
         }
         
         // Show current tab by a small white top border

@@ -38,11 +38,11 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "ic8-e2-idk"; */
 "ic8-e2-idk.text" = "Label";
 
-/* Class = "UITabBarItem"; title = "Discover"; ObjectID = "mMW-ze-V2Y"; */
-"mMW-ze-V2Y.title" = "Discover";
+/* Class = "UITabBarItem"; title = "Dial"; ObjectID = "mMW-ze-V2Y"; */
+"mMW-ze-V2Y.title" = "Dial";
 
 /* Class = "UIButton"; normalTitle = ""; ObjectID = "oMK-jj-u4O"; */
 "oMK-jj-u4O.normalTitle" = "";
 
-/* Class = "UITabBarItem"; title = "Me"; ObjectID = "pL4-Qt-LL4"; */
-"pL4-Qt-LL4.title" = "Me";
+/* Class = "UITabBarItem"; title = "More"; ObjectID = "pL4-Qt-LL4"; */
+"pL4-Qt-LL4.title" = "More";

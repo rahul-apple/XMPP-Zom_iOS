@@ -70,6 +70,14 @@ extension OTRMessagesViewController {
         return string;
     }
     
+    public override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath)
+        if cell is JSQMessagesCollectionViewCell {
+//            (cell as! JSQMessagesCollectionViewCell).messageBubbleImageView.image = UIImage(named: "ChatWhite")
+        }
+        return cell
+    }
+    
     func textAttachment(fontSize: CGFloat) -> NSTextAttachment {
         var font:UIFont? = UIFont(name: kFontAwesomeFont, size: fontSize)
         if (font == nil) {
