@@ -13,6 +13,7 @@
 #define VRO_CLIENT_ID @"9ZPYVkEjaZBqM7oR"
 #define VRO_CLIENT_SECRET @"lvVFQFVoDv5R38uCUlfrRlfBAB7qmWzD"
 #define XMPPHostName @"ec2-54-169-209-47.ap-southeast-1.compute.amazonaws.com"
+#define CALIBRIFONT(_size) (UIFont *)[UIFont fontWithName:@"Calibri" size:(CGFloat)(_size)]
 
 
 #endif /* ZomConstants_h */

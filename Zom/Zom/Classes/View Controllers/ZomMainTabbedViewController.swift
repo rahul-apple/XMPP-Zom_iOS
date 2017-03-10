@@ -49,7 +49,6 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
                 }
             }
             setViewControllers(newControllers, animated: false)
-            selectedIndex = 1
         }
         
         // Create bar button items
@@ -58,7 +57,7 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
         
         // Hide the tab item text, but don't null it (we use it to build the top title)
         for item:UITabBarItem in self.tabBar.items! {
-            item.selectedImage = item.image
+            item.selectedImage = item.selectedImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
             item.image = item.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
             item.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.clearColor(),
                 NSFontAttributeName:UIFont.systemFontOfSize(1)], forState: UIControlState.Normal)
@@ -66,7 +65,7 @@ public class ZomMainTabbedViewController: UITabBarController, OTRComposeViewCont
         }
         
         // Show current tab by a small white top border
-        tabBar.selectionIndicatorImage = createSelectionIndicator(UIColor.whiteColor(), size: CGSizeMake(tabBar.frame.width/CGFloat(tabBar.items!.count), tabBar.frame.height), lineHeight: 3.0)
+//        tabBar.selectionIndicatorImage = createSelectionIndicator(UIColor.whiteColor(), size: CGSizeMake(tabBar.frame.width/CGFloat(tabBar.items!.count), tabBar.frame.height), lineHeight: 3.0)
         
         let backItem = UIBarButtonItem()
         backItem.title = ""

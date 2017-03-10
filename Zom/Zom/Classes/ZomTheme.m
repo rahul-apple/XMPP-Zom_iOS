@@ -9,7 +9,6 @@
 #import "ZomTheme.h"
 #import "Zom-swift.h"
 
-#define DEFAULT_ZOM_COLOR @"#FF00B371"
 
 @implementation ZomTheme
 
@@ -37,8 +36,8 @@
     [[UINavigationBar appearance] setBarTintColor:self.mainThemeColor];
     [[UINavigationBar appearance] setBackgroundColor:self.mainThemeColor];
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setBarTintColor:self.mainThemeColor];
-    [[UITabBar appearance] setBackgroundColor:self.mainThemeColor];
+//    [[UITabBar appearance] setBarTintColor:self.mainThemeColor];
+//    [[UITabBar appearance] setBackgroundColor:self.mainThemeColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSForegroundColorAttributeName: [UIColor whiteColor]
                                                            }];
