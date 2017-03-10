@@ -13,7 +13,7 @@
         <!--Dial-->
         <scene sceneID="OzF-Z5-T1E">
             <objects>
-                <viewController id="BVZ-L4-aih" customClass="ZomDiscoverViewController" customModule="Zom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dialpad" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BVZ-L4-aih" customClass="VRODialPadViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aQC-Fj-bbt"/>
                         <viewControllerLayoutGuide type="bottom" id="czc-LT-PF2"/>
@@ -95,12 +95,12 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UxV-8a-yhL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="735" y="681"/>
+            <point key="canvasLocation" x="804" y="681"/>
         </scene>
         <!--Calls-->
         <scene sceneID="FG5-Qp-Q4n">
             <objects>
-                <viewController storyboardIdentifier="friends" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zk1-CB-Xd3" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="history" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zk1-CB-Xd3" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="i44-iY-x6N"/>
                         <viewControllerLayoutGuide type="bottom" id="amx-m7-RWs"/>
@@ -158,7 +158,7 @@
         <!--More-->
         <scene sceneID="lcE-Zw-lbt">
             <objects>
-                <viewController storyboardIdentifier="me" useStoryboardIdentifierAsRestorationIdentifier="YES" id="16b-JU-bde" customClass="ZomMyQRViewController" customModule="Zom" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="more" useStoryboardIdentifierAsRestorationIdentifier="YES" id="16b-JU-bde" customClass="ZomMyQRViewController" customModule="Zom" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TTT-qx-vo9"/>
                         <viewControllerLayoutGuide type="bottom" id="yvw-9a-kab"/>
